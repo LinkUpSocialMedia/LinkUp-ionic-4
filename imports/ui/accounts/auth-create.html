@@ -1,0 +1,31 @@
+<template name="Auth_create">
+  <div class="page auth-create">
+    <h4>First, create your profile</h4>
+    <form id="create-auth">
+      <div class="list">
+        <label class="item item-input">
+          {{#if nameError}}
+            <span class="input-label assertive">Name is required!</span>
+          {{else}}
+            <span class="input-label">Name:</span>
+          {{/if}}
+          <input type="text" name="name" id="create-name" placeholder="First Last">
+        </label>
+        <label class="item item-input upload-avatar calm">
+          {{#unless loaded}}
+            Upload an avatar <i class="ion-ios-upload-outline calm"></i>
+          {{/unless}}
+          {{#if loaded}}
+            Choose another image
+          {{/if}}
+          <input type="file" name="avatar" id="create-avatar" accept="image/*">
+          <img id="uploaded-image" src="{{image}}">
+          {{#if imageError}}
+            <span class="assertive">{{imageErrorMessage}}</span>
+          {{/if}}
+        </label>
+      </div>
+      <button class="button button-balanced" id="create-auth-submit" type="submit">Begin!</button>
+    </form>
+  </div>
+</template>

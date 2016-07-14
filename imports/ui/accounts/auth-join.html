@@ -1,0 +1,30 @@
+<template name="Auth_join">
+  <div class="page auth-join">
+    <form id="join-auth">
+      <div class="list">
+        <label class="item item-input {{emailError}}">
+          {{#if emailError}}
+            <span class="input-label assertive">{{emailErrorMessage}}</span>
+          {{/if}}
+          <input type="text" name="email" id="join-email" placeholder="Email" value="{{emailFromLogin}}">
+        </label>
+        <label class="item item-input {{passwordError}}">
+          {{#if passwordError}}
+            <span class="input-label assertive">{{passwordErrorMessage}}</span>
+          {{/if}}
+          <input type="password" name="password" id="join-password" placeholder="Password" value="{{passwordFromLogin}}">
+        </label>
+        <label class="item item-input {{passwordAgainError}}">
+          {{#if passwordAgainError}}
+            <span class="input-label assertive">{{passwordAgainErrorMessage}}</span>
+          {{/if}}
+          <input type="password" name="passwordAgain" id="join-password-again" placeholder="Repeat password">
+        </label>
+      </div>
+      <button class="button button-balanced" id="join-auth-submit" type="submit">Join!</button>
+    </form>
+    <div class="or-login">
+      <h3 class="calm js-login">...or login!</h3>
+    </div>
+  </div>
+</template>

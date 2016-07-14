@@ -1,0 +1,46 @@
+<template name="App_body">
+  {{#if authPage}}
+    <div id="auth-header" class="{{authPage}}">
+      <img src="/logo.png">
+      <h1>LinkUp</h1>
+    </div>
+  {{else}}
+    {{#if chatPage}}
+      <nav class="bar bar-header bar-light">
+        <div>
+          <a href="/profile" class="ion-ios-person-outline balanced"></a>
+          <a class="js-logout">Logout</a>
+        </div>
+        <a href="/"><h1 class="title">LinkUp</h1></a>
+        <a class="ion-ios-list-outline balanced"></a>
+      </nav>
+    {{else}}
+      <nav class="bar bar-header bar-light">
+        <div>
+          <a href="/profile" class="ion-ios-person-outline balanced"></a>
+          <a class="js-logout">Logout</a>
+        </div>
+        <a href="/"><h1 class="title">LinkUp</h1></a>
+        <a href="/add-event" class="ion-ios-plus-outline balanced"></a>
+      </nav>
+    {{/if}}
+  {{/if}}
+  <div id="content-container" class="scroll-content ionic-scroll">
+    <div class="content overflow-scroll" id="scrolling-content-container">
+      {{#HammerTouchArea gestureMap=templateGestures}}
+        {{#if Template.subscriptionsReady}}
+          {{> Template.dynamic template=main}}
+        {{else}}
+          {{> App_loading}}
+        {{/if}}
+      {{/HammerTouchArea}}
+    </div>
+  </div>
+  {{#unless authPage}}
+    {{#if inEvents}}
+      <div id="user-events">
+        <a href="/going" id="events-going" class="ion-ios-calendar-outline balanced"></a>
+      </div>
+    {{/if}}
+  {{/unless}}
+</template>

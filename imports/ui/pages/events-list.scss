@@ -1,0 +1,57 @@
+.events-list {
+  .map-or-list {
+    position: fixed;
+    z-index: 3;
+    left: calc(50% - 60px);
+    width: 120px;
+    margin-top: 16.5px;
+    .events-view-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      a {
+        width: 60px;
+        button {
+          width: 100%;
+          background-color: rgba(255,255,255,0.7);
+          font-weight: bold;
+        }
+        &:first-child {
+          button {
+            border-radius: 10px 0px 0px 10px;
+          }
+        }
+        &:last-child {
+          button {
+            border-radius: 0px 10px 10px 0px;
+          }
+        }
+      }
+    }
+  }
+  ul {
+    padding: 0px;
+    padding-top: 80px;
+    li {
+      list-style-type: none;
+      cursor: pointer;
+      .item-avatar {
+        a {
+          position: absolute;
+          right: 10px;
+          top: calc(50% - 15px);
+          i {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+  .details {
+    margin-left: 105%;
+    transition: margin-left 0.4s ease;
+    &.show {
+      margin-left: 0%;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<template name="Events_list">
+  <div class="page events-list">
+    <div class="details {{details}}">
+      {{> Events_details}}
+    </div>
+    <nav class="map-or-list">
+      {{> Events_view_button}}
+    </nav>
+    <ul>
+      {{#each event in events}}
+        <li class="list-card">
+          {{> Event_card event=event}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</template>

@@ -1,0 +1,31 @@
+.auth-create {
+  margin-top: 65%;
+  h4 {
+    color: #379745;
+    text-align: center;
+  }
+  #create-auth {
+    .upload-avatar {
+      min-height: 20vh;
+      justify-content: center;
+      padding: 0px;
+      flex-direction: column;
+      padding-top: 5px;
+      #create-avatar {
+        display: none;
+      }
+      i {
+        font-size: 30px;
+      }
+      #uploaded-image {
+        max-width: 20vh;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        max-height: 20vh;
+      }
+    }
+  }
+  #create-auth-submit {
+    width: 100%;
+  }
+}

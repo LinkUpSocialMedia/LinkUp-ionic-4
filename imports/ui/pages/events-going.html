@@ -1,0 +1,20 @@
+<template name="Events_going">
+  <div class="page events-going">
+    <div class="details {{details}}">
+      {{> Events_details}}
+    </div>
+    <div class="bar bar-subheader">
+      <h2 class="title">Links</h2>
+    </div>
+    <ul>
+      {{#each event in events}}
+        <li class="list-card">
+          <a href="{{pathFor 'EventChats.chat' _id=event.eventId}}">
+            {{> Event_card event=event}}
+          </a>
+          <span class="js-show-details assertive" id="{{event.eventId}}">Details</span>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</template>

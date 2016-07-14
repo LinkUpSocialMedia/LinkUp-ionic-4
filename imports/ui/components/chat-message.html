@@ -1,0 +1,11 @@
+<template name="Chat_message">
+  <div class='chat-message {{owned}} item {{show}}'>
+    {{#if owned}}
+      <h2>Me</h2>
+    {{else}}
+      <h2>{{chat.name}}</h2>
+    {{/if}}
+    <p class="{{long}}">{{chat.message}}</p>
+  </div>
+  <span class="message-time {{show}}">{{date}}</span>
+</template>

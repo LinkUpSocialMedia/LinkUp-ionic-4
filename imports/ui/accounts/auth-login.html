@@ -1,0 +1,27 @@
+<template name="Auth_login">
+  <div class="page auth-login">
+    <form id="login-auth">
+      {{#if loginError}}
+        <h3 class="assertive login-error">Email or password is wrong!</h3>
+      {{/if}}
+      <div class="list">
+        <label class="item item-input {{emailError}}">
+          {{#if emailError}}
+            <span class="input-label assertive">{{emailErrorMessage}}</span>
+          {{/if}}
+          <input type="text" name="email" id="login-email" placeholder="Email">
+        </label>
+        <label class="item item-input {{passwordError}}">
+          {{#if passwordError}}
+            <span class="input-label assertive">{{passwordErrorMessage}}</span>
+          {{/if}}
+          <input type="password" name="password" id="login-password" placeholder="Password">
+        </label>
+      </div>
+      <button class="button button-balanced" id="login-auth-submit" type="submit">Login!</button>
+    </form>
+    <div class="or-register">
+      <h3 class="calm js-join">...or join!</h3>
+    </div>
+  </div>
+</template>

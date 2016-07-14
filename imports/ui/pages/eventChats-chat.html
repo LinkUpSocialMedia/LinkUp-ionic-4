@@ -1,0 +1,20 @@
+<template name="EventChats_chat">  
+  <div class="page event-chats" id="event-chats-page">
+    <div class="bar bar-subheader">
+      <h2 class="title">{{eventName}}</h2>
+    </div>
+    <ul>
+      {{#each message in messages}}
+        <li class="list">
+          {{> Chat_message chat=message}}
+        </li>
+      {{/each}}
+    </ul>
+    <form id="send-message">
+      <label class="item item-input">
+        <textarea name="message" id="message-message" placeholder="Send a message" rows="4"></textarea>
+      </label>
+      <button type="submit" class="positive">Send</button>
+    </form>
+  </div>
+</template>

@@ -1,0 +1,20 @@
+@import '.meteor/local/build/programs/server/assets/packages/meteoric_ionic-sass/ionic';
+@import '.meteor/local/build/programs/server/assets/packages/meteoric_ionicons-sass/ionicons';
+@import '../imports/ui/pages/events-map.scss';
+@import '../imports/ui/layouts/app-body.scss';
+@import '../imports/ui/pages/events-list.scss';
+@import '../imports/ui/pages/eventChats-chat.scss';
+@import '../imports/ui/pages/events-details.scss';
+@import '../imports/ui/pages/events-add.scss';
+@import '../imports/ui/pages/events-going.scss';
+@import '../imports/ui/accounts/auth-login.scss';
+@import '../imports/ui/accounts/auth-join.scss';
+@import '../imports/ui/accounts/auth-create.scss';
+@import '../imports/ui/pages/profile.scss';
+
+body {
+  margin: 0px;
+}
+#__blaze-root {
+  height: 100vh;
+}

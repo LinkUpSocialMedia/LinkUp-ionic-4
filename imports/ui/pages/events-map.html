@@ -1,0 +1,13 @@
+<template name="Events_map">
+  <div class="page events-map">
+    <div class="details {{details}}">
+      {{> Events_details}}
+    </div>
+    <nav class="map-or-list">
+      {{> Events_view_button}}
+    </nav>
+    <div class="map-container">
+      {{> googleMap name="eventMap" options=mapOptions}}
+    </div>
+  </div>
+</template>

@@ -1,0 +1,21 @@
+<template name="Events_details">
+  <div class="page events-details">
+    {{#each event in events}}
+      <section class="card">
+        <div class="item item-avatar">
+          <img src="{{event.userAvatar}}" class="event-avatar">
+          <h2>{{event.name}}: <span>{{event.createdBy}}</span></h2>
+          <p>{{address}}</p>
+          <p>{{date}}</p>
+        </div>
+        <div class="item item-body">
+          <div>
+            <img class="full-image" src="{{event.avatar}}">
+          </div>
+          <p>{{event.description}}</p>
+        </div>
+        <button class="button button-dark" id="js-join-event">Join</button>
+      </section>
+    {{/each}}
+  </div>
+</template>
