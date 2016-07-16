@@ -34,3 +34,4 @@ App.accessRule("*", {external: false});
 App.setPreference('AutoHideSplashScreen', 'true');
 App.setPreference('BackupWebStorage', 'local');
 App.setPreference('Orientation', 'portrait');
+App.setPreference('KeyboardDisplayRequiresUserAction', 'false');

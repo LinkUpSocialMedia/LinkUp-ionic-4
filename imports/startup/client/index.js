@@ -1,4 +1,3 @@
-import './useraccounts-configuration.js';
 import './routes.js';
 
 import { GoogleMaps } from 'meteor/dburles:google-maps';
@@ -14,12 +13,5 @@ Meteor.startup(() => {
 if (Meteor.isCordova) {
   Meteor.startup(() => {
     Keyboard.hideFormAccessoryBar(true);
-    PushNotification.init({
-      ios: {
-        alert: "true",
-        sound: "true",
-        badge: "true",
-      },
-    });
   });
 }

@@ -1,0 +1,41 @@
+<template name="Auth_join">
+  <div id="auth-join">
+    <div class="bar bar-header bar-light">
+      <a href="/startup">Cancel</a>
+      <img src="logo.png">
+      <span></span>
+    </div>
+
+    <h2>Hi! Welcome.</h2>
+    <form id="join-form">
+      <div class="list">
+        <label class="item item-input">
+          <input id="email" type="email" placeholder="Email" autofocus value="{{joinEmail}}">
+        </label>
+        <label class="item item-input">
+          <input id="password" type="{{passType}}" placeholder="Password" value="{{joinPassword}}">
+        </label>
+        {{#if password}}
+          <label class="item item-input">
+            <input id="repeat" type="{{passType}}" placeholder="Repeat password" value="{{joinPassword}}">
+          </label>
+        {{/if}}
+      </div>
+    </form>
+    {{#if password}}
+      {{#if reveal}}
+        <div class="hide-pass js-hide-password">Hide password</div>
+      {{else}}
+        <div class="hide-pass js-reveal-password">Reveal password</div>
+      {{/if}}
+    {{/if}}
+
+    <div class="bar bar-footer">
+      {{#if ready}}
+        <button class="button button-balanced ready" type="submit" form="join-form">Next</button>
+      {{else}}
+        <button class="button button-balanced">Next</button>
+      {{/if}}
+    </div>
+  </div>
+</template>

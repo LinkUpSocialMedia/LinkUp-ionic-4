@@ -1,0 +1,65 @@
+#auth-startup {
+  background-image: url('background.png');
+  background-size: contain;
+  height: 100vh;
+  #logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5%;
+    transition: padding-top 1s ease;
+    transition-delay: 0.3s;
+    &.started {
+      padding-top: 71%;
+      img {
+        width: 100px;
+      }
+    }
+    img {
+      width: 65px;
+      transition: width 0.3s ease;
+    }
+  }
+  #text {
+    margin-top: 65%;
+    transition: margin-top .3s ease;
+    transition-delay: 0.3s;
+    &.started {
+      margin-top: 100%;
+    }
+    h3 {
+      color: white;
+      font-size: 18px;
+      text-align: center;
+      padding: 0px 20px;
+      &:last-child {
+        margin-top: 5%;
+      }
+    }
+  }
+  #buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15%;
+    button {
+      width: 50%;
+      border-radius: 5px;
+      font-weight: bold;
+      &:first-child {
+        color: $brand-color;
+        &:active {
+          background-color: darken(white, 20%);
+        }
+      }
+      &:last-child {
+        color: white;
+        margin-top: 3%;
+        &:active {
+          color: darken(white, 20%);
+        }
+      }
+    }
+  }
+}

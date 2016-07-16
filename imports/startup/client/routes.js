@@ -1,32 +1,23 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
-import { AccountsTemplates } from 'meteor/useraccounts:core';
 
-import '../../ui/layouts/app-body.js';
-import '../../ui/accounts/accounts-templates.js';
-import '../../ui/pages/events-list.js';
-import '../../ui/pages/events-map.js';
-import '../../ui/pages/events-add.js';
-import '../../ui/pages/events-details.js';
-import '../../ui/pages/events-going.js';
-import '../../ui/pages/eventChats-chat.js';
-import '../../ui/pages/profile.js';
-import '../../ui/pages/app-notFound.js';
-import '../../ui/accounts/auth-login.js';
-import '../../ui/accounts/auth-join.js';
-import '../../ui/accounts/auth-create.js';
+import '../../ui/auth/auth-startup.js';
+import '../../ui/auth/auth-login.js';
+import '../../ui/auth/auth-more.js';
+import '../../ui/auth/auth-join.js';
+import '../../ui/auth/auth-create.js';
 
-FlowRouter.route('/events/:_id', {
-  name: 'Events.details',
-  action() {
-    BlazeLayout.render('App_body', { main: 'Events_details' });
-  },
-});
+// FlowRouter.route('/', {
+//   name: 'Events.list',
+//   action() {
+//     BlazeLayout.render('App_body', { main: 'Events_list' });
+//   },
+// });
 
 FlowRouter.route('/', {
-  name: 'Events.list',
+  name: 'startup',
   action() {
-    BlazeLayout.render('App_body', { main: 'Events_list' });
+    BlazeLayout.render('Auth_startup');
   },
 });
 
@@ -51,26 +42,69 @@ FlowRouter.route('/profile', {
   },
 });
 
-FlowRouter.route('/going', {
-  name: 'Events.going',
+FlowRouter.route('/links', {
+  name: 'Users.links',
   action() {
-    BlazeLayout.render('App_body', { main: 'Events_going' });
+    BlazeLayout.render('App_body', { main: 'Users_links' });
   },
 });
 
-FlowRouter.route('/going/chat/:_id', {
-  name: 'EventChats.chat',
+FlowRouter.route('/chat', {
+  name: 'Users.chat',
   action() {
-    BlazeLayout.render('App_body', { main: 'EventChats_chat' });
+    BlazeLayout.render('App_body', { main: 'Users_chat' });
   },
 });
 
-FlowRouter.route('/going/chat/:_id/users', {
-  name: 'EventChats.users',
+// AUTH FLOW $$$$$$$$$$$$$$
+
+FlowRouter.route('/startup', {
+  name: 'Auth.startup',
   action() {
-    BlazeLayout.render('App_body', { main: 'EventChats_users' });
+    BlazeLayout.render('Auth_startup');
   },
 });
+
+// login flow
+
+FlowRouter.route('/login', {
+  name: 'Auth.login',
+  action() {
+    BlazeLayout.render('Auth_login');
+  },
+});
+
+FlowRouter.route('/forgot', {
+  name: 'Auth.forgot',
+  action() {
+    BlazeLayout.render('Auth_forgot');
+  },
+});
+
+FlowRouter.route('/more', {
+  name: 'Auth.more',
+  action() {
+    BlazeLayout.render('Auth_more');
+  },
+});
+
+// sign up flow
+
+FlowRouter.route('/join', {
+  name: 'Auth.join',
+  action() {
+    BlazeLayout.render('Auth_join');
+  },
+});
+
+FlowRouter.route('/create', {
+  name: 'Auth.create',
+  action() {
+    BlazeLayout.render('Auth_create');
+  }
+});
+
+// not found $$$$$$$$$$$$$$$$
 
 FlowRouter.notFound = {
   name: 'NotFound',
@@ -78,46 +112,3 @@ FlowRouter.notFound = {
     BlazeLayout.render('App_body', { main: 'App_notFound' });
   },
 };
-
-FlowRouter.route('/login', {
-  name: 'login',
-  action() {
-    BlazeLayout.render('App_body', { main: 'Auth_login' });
-  },
-});
-
-FlowRouter.route('/join', {
-  name: 'join',
-  action() {
-    BlazeLayout.render('App_body', { main: 'Auth_join' });
-  },
-});
-
-FlowRouter.route('/create', {
-  name: 'create',
-  action() {
-    BlazeLayout.render('App_body', { main: 'Auth_create' });
-  }
-});
-
-FlowRouter.route('/forgot', {
-  name: 'forgot',
-  action() {
-    BlazeLayout.render('App_body', { main: 'Auth_forgot' });
-  },
-});
-
-// AccountsTemplates.configureRoute('signIn', {
-//   name: 'login',
-//   path: '/login',
-// });
-//
-// AccountsTemplates.configureRoute('signUp', {
-//   name: 'join',
-//   path: '/join',
-// });
-//
-// AccountsTemplates.configureRoute('forgotPwd', {
-//   name: 'forgot',
-//   path: '/forgot-password',
-// });

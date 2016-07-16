@@ -1,0 +1,75 @@
+#auth-join {
+  .bar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    box-shadow: none;
+    background: none;
+    padding: 5px 10px;
+    position: static;
+    img {
+      max-width: 44px;
+    }
+    a {
+      width: 20%;
+      text-decoration: none;
+      color: $brand-color;
+      font-size: 15px;
+    }
+    span {
+      width: 20%;
+    }
+  }
+  h2 {
+    font-size: 20px;
+    margin-top: 35px;
+    padding-left: 11px;
+    font-weight: 300;
+  }
+  #join-form {
+    border: none;
+    margin-top: 5px;
+    .list {
+      border: none;
+      label {
+        border: none;
+        padding-left: 12px;
+        input {
+          color: $brand-color;
+          border-bottom: thin solid #eaeaea;
+        }
+      }
+    }
+  }
+  .hide-pass {
+    padding-left: 12px;
+    font-size: 12px;
+    color: $brand-color;
+    margin-top: 2px;
+  }
+  .bar-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px 10px;
+    a {
+      text-decoration: none;
+      color: $brand-color;
+    }
+    .button {
+      background-color: white;
+      color: #5f5f5f;
+      border-radius: 5px;
+      line-height: 20px;
+      border-color: transparent;
+      &.ready {
+        background-color: $brand-color;
+        color: white;
+        &:active {
+          background-color: darken($brand-color, 20%);
+        }
+      }
+    }
+  }
+}

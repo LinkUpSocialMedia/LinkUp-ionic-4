@@ -1,0 +1,36 @@
+<template name="Auth_create">
+  <div id="auth-create">
+    <div class="bar bar-header bar-light">
+      <a href="/join" class="ion-ios-arrow-back"></a>
+      <img src="logo.png">
+      <span></span>
+    </div>
+
+    <h2>One more step.</h2>
+    <form id="create-form">
+      <div class="list">
+        <label class="item item-input">
+          <input id="name" type="text" placeholder="Full Name" autofocus>
+        </label>
+        <label class="item item-input upload-avatar">
+          {{#unless loaded}}
+            Add profile pic <i class="ion-ios-upload-outline"></i>
+          {{/unless}}
+          {{#if loaded}}
+            Choose another
+          {{/if}}
+          <input type="file" name="avatar" id="create-avatar" accept="image/*">
+          <img id="uploaded-image" src="{{image}}">
+        </label>
+      </div>
+    </form>
+
+    <div class="bar bar-footer">
+      {{#if ready}}
+        <button class="button button-balanced ready" type="submit" form="create-form">Start!</button>
+      {{else}}
+        <button class="button button-balanced">Start!</button>
+      {{/if}}
+    </div>
+  </div>
+</template>

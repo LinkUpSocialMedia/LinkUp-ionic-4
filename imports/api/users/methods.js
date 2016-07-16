@@ -16,11 +16,9 @@ export const register = new ValidatedMethod({
       email,
       password,
     };
-    const id = Accounts.createUser(options);
+    const userId = Accounts.createUser(options);
 
-    Meteor.users.update({ _id: id }, {
-      $set: { email }
-    });
+    Meteor.users.update(userId, { $set: { email } });
   },
 });
 
@@ -36,7 +34,7 @@ export const update = new ValidatedMethod({
         'You must be logged in to join an event!');
     }
 
-    Meteor.users.update({ _id: this.userId }, {
+    Meteor.users.update(this.userId, {
       $set: {
         name,
         avatar,
@@ -44,6 +42,37 @@ export const update = new ValidatedMethod({
         blocked: [],
       }
     });
+  },
+});
+
+export const fullRegister = new ValidatedMethod({
+  name: 'users.fullRegister',
+  validate: new SimpleSchema({
+    email: { type: String, regEx: SimpleSchema.RegEx.Email },
+    password: { type: String },
+    name: { type: String },
+    avatar: { type: String, regEx: SimpleSchema.RegEx.Url },
+  }).validator(),
+  run({ email, password, name, avatar }) {
+    console.log('in reg');
+    const options = {
+      email,
+      password,
+    };
+
+    const userId = Accounts.createUser(options);
+
+    Meteor.users.update(userId, {
+      $set: {
+        email,
+        name,
+        avatar,
+        connections: [],
+        blocked: [],
+      }
+    });
+
+    console.log(Meteor.users.findOne(userId));
   },
 });
 
@@ -81,11 +110,7 @@ export const joinEvent = new ValidatedMethod({
       userAvatar: event.userAvatar,
     };
 
-    Meteor.users.update({ _id: this.userId }, {
-      $push: {
-        events: eventInfo,
-      }
-    });
+    Meteor.users.update(this.userId, { $push: { events: eventInfo } });
     Events.update(eventId, { $inc: { usersGoing: 1 } });
   },
 });
@@ -101,11 +126,22 @@ export const leaveEvent = new ValidatedMethod({
         'You must be logged in to leave an event!');
     }
 
-    Meteor.users.update({ _id: this.userId }, {
-      $pull: {
-        events: { eventId }
-      }
-    });
+    Meteor.users.update(this.userId, { $pull: { events: { eventId } } });
     Events.update(eventId, { $inc: { usersGoing: -1 } });
+  },
+});
+
+export const clearEvent = new ValidatedMethod({
+  name: 'users.clearEvent',
+  validate: new SimpleSchema({
+    eventId: { type: String, regEx: SimpleSchema.RegEx.Id },
+  }).validator(),
+  run({ eventId }) {
+    if (!this.userId) {
+      throw new Meteor.Error('users.clearEvent.accessDenied',
+        'You must be logged in to clear an event!');
+    }
+
+    Meteor.users.update(this.userId, { $pull: { events: { eventId } } });
   },
 });
