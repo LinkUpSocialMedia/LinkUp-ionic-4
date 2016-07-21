@@ -44,6 +44,8 @@ Meteor.startup(() => {
         createdBy,
         userAvatar: faker.image.avatar(),
         dateCreated: faker.date.recent(),
+        usersGoing: 1,
+        category: 'sports',
       };
 
       console.log(event);

@@ -1,0 +1,15 @@
+<template name="Events_map">
+  <div id="events-map" class="page">
+    <div class="map-container">
+      {{> googleMap name="eventMap" options=mapOptions}}
+    </div>
+
+    <div class="list-container">
+      {{#if isActiveRoute 'Events.list'}}
+        {{#each event in events}}
+          {{> Event_card event=event}}
+        {{/each}}
+      {{/if}}
+    </div>
+  </div>
+</template>

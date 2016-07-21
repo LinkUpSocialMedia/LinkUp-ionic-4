@@ -1,0 +1,81 @@
+#app-body {
+  .bar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 5px 10px;
+    background-color: transparent;
+    border-bottom: thin solid #eaeaea;
+    .icon {
+      font-size: 25px;
+      width: 20%;
+      text-decoration: none;
+      color: $brand-color;
+      &:last-child {
+        text-align: right;
+      }
+    }
+    .map-or-list {
+      width: 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: thin solid $brand-color;
+      border-radius: 15px;
+      a {
+        color: $brand-color;
+        width: 50%;
+        text-align: center;
+        padding: 1px 0px;
+        text-decoration: none;
+        &:first-child {
+          border-right: thin solid $brand-color;
+          border-radius: 15px 0px 0px 15px;
+        }
+        &:last-child {
+          border-radius: 0px 15px 15px 0px;
+        }
+        &.active {
+          background-color: $brand-color;
+          color: white;
+        }
+      }
+    }
+    &.links-page-header {
+      background-color: $brand-color;
+      .icon {
+        color: white;
+      }
+      .title {
+        color: white;
+      }
+    }
+  }
+  #content-container {
+    // margin-top: 44px;
+    margin-bottom: 49px;
+
+  }
+  .tabs-icon-only {
+    background-color: white;
+    border-top: thin solid #eaeaea;
+    .tab-item {
+      i {
+        font-size: 30px;
+      }
+      svg {
+        width: 30px;
+      }
+      &.active {
+        border-bottom: 2px solid $brand-color;
+        border-radius: 3px 3px 0px 0px;
+        i {
+          color: $brand-color;
+        }
+      }
+    }
+  }
+}

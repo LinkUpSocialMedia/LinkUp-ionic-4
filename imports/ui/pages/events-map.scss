@@ -1,0 +1,25 @@
+@import 'imports/ui/components/event-card.scss';
+
+#events-map {
+  .map-container {
+    // margin-top: -44px;
+    height: calc(100vh - 49px);
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+  }
+  .list-container {
+    margin-top: 44px;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+    width: calc(100% - 10px);
+    .event-card {
+      padding: 5px 5px 5px 75px;
+      margin: 0px 5px 5px 5px;
+      width: 100%;
+    }
+  }
+}

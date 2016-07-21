@@ -3,6 +3,7 @@ import './auth-login.html';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.Auth_login.onCreated(function() {
   this.state = new ReactiveDict();
@@ -45,5 +46,19 @@ Template.Auth_login.events({
   },
   'click .js-hide-password'(event, template) {
     template.state.set('reveal', false);
+  },
+  'submit #login-form'(event, template) {
+    event.preventDefault();
+
+    email = event.target.email.value;
+    password = event.target.password.value;
+
+    Meteor.loginWithPassword(email, password, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        FlowRouter.go('Events.list');
+      }
+    });
   },
 });

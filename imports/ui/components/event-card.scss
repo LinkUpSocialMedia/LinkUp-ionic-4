@@ -1,0 +1,27 @@
+.event-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 3px;
+  .event-card-image {
+    max-width: 50px !important;
+    max-height: 50px !important;
+    top: 10px !important;
+    left: 10px !important;
+    border-radius: 0px !important;
+  }
+  h2 {
+    font-size: 15px;
+    color: #828282;
+    text-overflow: clip;
+    white-space: normal;
+  }
+  span {
+    color: #bababa;
+    margin-left: 10px;
+    i {
+      color: #bababa;
+      font-size: 15px;
+    }
+  }
+}

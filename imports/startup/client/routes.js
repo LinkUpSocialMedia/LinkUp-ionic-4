@@ -6,18 +6,14 @@ import '../../ui/auth/auth-login.js';
 import '../../ui/auth/auth-more.js';
 import '../../ui/auth/auth-join.js';
 import '../../ui/auth/auth-create.js';
-
-// FlowRouter.route('/', {
-//   name: 'Events.list',
-//   action() {
-//     BlazeLayout.render('App_body', { main: 'Events_list' });
-//   },
-// });
+import '../../ui/layouts/app-body.js';
+import '../../ui/pages/events-map.js';
+import '../../ui/pages/users-links.js';
 
 FlowRouter.route('/', {
-  name: 'startup',
+  name: 'Events.list',
   action() {
-    BlazeLayout.render('Auth_startup');
+    BlazeLayout.render('App_body', { main: 'Events_map' });
   },
 });
 
@@ -36,9 +32,9 @@ FlowRouter.route('/add-event', {
 });
 
 FlowRouter.route('/profile', {
-  name: 'Profile',
+  name: 'Users.profile',
   action() {
-    BlazeLayout.render('App_body', { main: 'Profile' });
+    BlazeLayout.render('App_body', { main: 'Users_profile' });
   },
 });
 

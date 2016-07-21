@@ -2,14 +2,10 @@ import './auth-startup.html';
 
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Template } from 'meteor/templating';
-import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
+import { Meteor } from 'meteor/meteor';
 
 Template.Auth_startup.onCreated(function() {
-  this.state = new ReactiveDict();
-  this.state.setDefault({
-    'started': 'started',
-  });
   if (Meteor.isCordova) {
     StatusBar.backgroundColorByHexString('#99ca3c');
   }
