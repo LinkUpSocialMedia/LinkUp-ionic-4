@@ -9,6 +9,7 @@ import '../../ui/auth/auth-create.js';
 import '../../ui/layouts/app-body.js';
 import '../../ui/pages/events-map.js';
 import '../../ui/pages/users-links.js';
+import '../../ui/pages/events-details.js';
 
 FlowRouter.route('/', {
   name: 'Events.list',
@@ -21,6 +22,13 @@ FlowRouter.route('/map', {
   name: 'Events.map',
   action() {
     BlazeLayout.render('App_body', { main: 'Events_map' });
+  },
+});
+
+FlowRouter.route('/details', {
+  name: 'Events.details',
+  action() {
+    BlazeLayout.render('Events_details');
   },
 });
 

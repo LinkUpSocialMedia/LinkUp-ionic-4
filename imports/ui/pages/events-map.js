@@ -28,13 +28,11 @@ Template.Events_map.onCreated(function() {
         };
         let date = pad(eventDate.getDate()) + "/" + pad(eventDate.getMonth() + 1) + ' at ' + eventDate.toString().slice(16, -18);
 
-        const markerContent = '<div class="item item-avatar marker-content">'+
-          '<img src="'+doc.avatar+'" class="event-avatar">'+
-          '<h2>'+doc.name+': <span>'+doc.createdBy+'</span></h2>'+
-          '<p>'+address+'</p>'+
-          '<p>'+date+'</p>'+
-          '<div><a class="assertive js-details">Details</a></div>'+
-        '</div>'
+        const markerContent = '<div class="item marker-content">'+
+          '<h2>'+doc.name+'</h2>'+
+          '<span class="users-going"><i class="ion-ios-people"></i> '+doc.usersGoing+'</span>'+
+        '</div>'+
+        '<div class="event-details-link"><a class="js-details">Details</a></div>';
 
         const infoWindow = new google.maps.InfoWindow({
           content: markerContent,
@@ -46,6 +44,8 @@ Template.Events_map.onCreated(function() {
           currentDataDescription: doc.description,
           currentDataUserAvatar: doc.userAvatar,
           currentDataId: doc._id,
+          currentDataCategory: doc.category,
+          currentDataUsersGoing: doc.usersGoing,
         });
         windows.push(infoWindow);
 
@@ -68,8 +68,10 @@ Template.Events_map.onCreated(function() {
             description: infoWindow.currentDataDescription,
             userAvatar: infoWindow.currentDataUserAvatar,
             _id: infoWindow.currentDataId,
+            category: infoWindow.currentDataCategory,
+            usersGoing: infoWindow.currentDataUsersGoing,
           };
-          Session.set('eventDetails', { event: event });
+          Session.set('eventDetails', event);
         });
 
         markers.push(marker);
@@ -94,5 +96,15 @@ Template.Events_map.helpers({
         disableDefaultUI: true,
       };
     }
+  },
+});
+
+Template.Events_map.events({
+  'click .event-card'(event, instance) {
+    Session.set('eventDetails', this.event);
+    FlowRouter.go('Events.details');
+  },
+  'click .js-details'() {
+    FlowRouter.go('Events.details');
   },
 });

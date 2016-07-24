@@ -55,7 +55,7 @@ export const insert = new ValidatedMethod({
       createdBy: user.name,
       userAvatar: user.avatar,
       dateCreated: new Date(),
-      usersGoing: 0,
+      usersGoing: [user._id],
       category,
     };
 

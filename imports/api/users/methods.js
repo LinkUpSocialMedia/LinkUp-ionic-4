@@ -111,7 +111,7 @@ export const joinEvent = new ValidatedMethod({
     };
 
     Meteor.users.update(this.userId, { $push: { events: eventInfo } });
-    Events.update(eventId, { $inc: { usersGoing: 1 } });
+    Events.update(eventId, { $push: { usersGoing: this.userId } });
   },
 });
 

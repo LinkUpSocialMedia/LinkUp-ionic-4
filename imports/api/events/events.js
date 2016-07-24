@@ -28,7 +28,7 @@ Events.schema = new SimpleSchema({
   createdBy: { type: String },
   userAvatar: { type: String, regEx: SimpleSchema.RegEx.Url },
   dateCreated: { type: Date },
-  usersGoing: { type: Number, min: 0 },
+  usersGoing: { type: [String], min: 0, regEx: SimpleSchema.RegEx.Id },
   category: { type: String, },
 });
 

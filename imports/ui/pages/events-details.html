@@ -1,0 +1,38 @@
+<template name="Events_details">
+  <div id="events-details">
+    <div class="bar bar-header bar-light">
+      <span></span>
+      <h1 class="title">Details</h1>
+      <a href="/" class="ion-ios-close-empty"></a>
+    </div>
+
+    {{#each event in events}}
+      <div class="list-card">
+        <div class="item item-body">
+          <h2>{{event.name}}</h2>
+          <h3>{{eventDate event.dateOccuring}}</h3>
+          <h3>{{event.address}}</h3>
+          <h4>By: <img src="{{event.userAvatar}}"> <span>{{event.createdBy}}</span></h4>
+          <img class="full-image" src="{{event.avatar}}">
+          <p>{{event.description}}</p>
+
+          <div class="details-stats">
+            <div>
+              <h2>{{event.usersGoing.length}}</h2>
+              <p>Going</p>
+            </div>
+            <div>
+              <h2>{{totalComments}}</h2>
+              <p>Comments</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bar bar-footer">
+        <a href="{{pathFor 'Events.comments' _id=event._id}}">Comments</a>
+        <button class="button button-balanced js-join-event">Join</button>
+      </div>
+    {{/each}}
+  </div>
+</template>

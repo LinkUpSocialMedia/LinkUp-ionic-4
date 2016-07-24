@@ -8,14 +8,57 @@
     position: fixed;
     top: 0px;
     left: 0px;
+    .gw-style-iw {
+      overflow: hidden;
+    }
+    .marker-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 3px;
+      border: none;
+      padding: 0px;
+      .event-card-image {
+        max-width: 50px !important;
+        max-height: 50px !important;
+        top: 10px !important;
+        left: 10px !important;
+        border-radius: 0px !important;
+      }
+      h2 {
+        font-size: 15px;
+        color: #828282;
+        text-overflow: clip;
+        white-space: normal;
+        margin-right: 10px;
+      }
+      span {
+        color: #bababa;
+        margin-left: 10px;
+        float: right;
+        i {
+          color: #bababa;
+          font-size: 15px;
+        }
+      }
+    }
+    .event-details-link {
+      margin-top: 10px;
+      .js-details {
+        color: $brand-color;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    }
   }
   .list-container {
-    margin-top: 44px;
+    padding-top: 44px;
     position: absolute;
     z-index: 1;
     top: 0px;
     left: 0px;
-    width: calc(100% - 10px);
+    width: 100%;
+    padding-right: 10px;
     .event-card {
       padding: 5px 5px 5px 75px;
       margin: 0px 5px 5px 5px;

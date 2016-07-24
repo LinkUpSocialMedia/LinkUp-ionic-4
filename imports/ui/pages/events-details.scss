@@ -1,0 +1,105 @@
+#events-details {
+  background-color: #f5f5f5;
+  height: 100%;
+  .bar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    position: static;
+    border-bottom: none;
+    box-shadow: none;
+    background: none;
+    background-color: white;
+    a {
+      text-decoration: none;
+      font-size: 35px;
+      color: $brand-color;
+      position: relative;
+      z-index: 1;
+      text-align: right;
+      width: 30px;
+    }
+  }
+  .list-card {
+    .item-body {
+      height: calc(100vh - 88px);
+      margin-bottom: 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      border-bottom: none;
+      h2 {
+        margin: 0px;
+        color: #666;
+        margin-bottom: 10px;
+        font-size: 17px;
+      }
+      h3 {
+        margin: 0px;
+        color: #666;
+        margin-bottom: 10px;
+      }
+      h4 {
+        margin: 0px;
+        color: #666;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          border-radius: 50%;
+          margin: 0px 5px;
+          max-width: 25px;
+        }
+      }
+      > p {
+        padding: 0px 20px;
+        text-align: center;
+      }
+      .full-image {
+        max-width: 65vw;
+      }
+      .details-stats {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          h2 {
+            color: $brand-color;
+            margin-top: 0px;
+            margin-bottom: 5px;
+          }
+          p {
+            margin: 0px;
+            color: $brand-color;
+            font-size: 11px;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+  .bar-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    a {
+      text-decoration: none;
+      color: $brand-color;
+    }
+    .button {
+      background-color: $brand-color;
+      border-radius: 5px;
+      line-height: 20px;
+      padding: 0px 20px;
+    }
+  }
+}

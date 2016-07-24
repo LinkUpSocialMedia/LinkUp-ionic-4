@@ -3,6 +3,7 @@ import './app-body.html';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
+import { $ } from 'meteor/jquery';
 
 Template.App_body.onCreated(function() {
   Session.set('started', true);
@@ -14,9 +15,24 @@ Template.App_body.onCreated(function() {
 });
 
 Template.App_body.onRendered(function() {
-  if (Meteor.isCordova) {
-    StatusBar.backgroundColorByHexString('#e9e5dc');
-  }
+  this.autorun(() => {
+    if (FlowRouter.getRouteName() === 'Events.list') {
+      if (Meteor.isCordova) {
+        StatusBar.backgroundColorByHexString('#e9e5dd');
+      }
+      $('.map-container').css('-webkit-filter', 'blur(10px)');
+      $('.events-page-header').css('background-color', 'transparent');
+    } else if (FlowRouter.getRouteName() === 'Events.map') {
+      if (Meteor.isCordova) {
+        StatusBar.backgroundColorByHexString('#f2efea');
+      }
+      $('.events-page-header').css('background-color', 'rgba(255,255,255,0.4)');
+      $('.map-container').css('-webkit-filter', 'none');
+    } else {
+      $('.map-container').css('-webkit-filter', 'none');
+      $('.events-page-header').css('background-color', 'inherit');
+    }
+  });
 });
 
 Template.App_body.helpers({
