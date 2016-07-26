@@ -2,16 +2,14 @@
   <div id="users-links" class="page">
     {{#if linksExist}}
       {{#each link in links}}
-        {{> Link_card link=link usersGoing=usersGoingHelper}}
+        {{> Link_card link=link}}        
 
-        <div class="link-user-list {{showList}}">
+        <div id="{{link._id}}" class="item link-user-list {{showList}}">
           {{#each user in eventUsers}}
-            <h4>By: <img src="{{user.avatar}}"> <span>{{user.name}}</span></h4>
+            <span>
+              <h4><img src="{{user.avatar}}"> <span>{{user.name}}</span></h4>
+            </span>
           {{/each}}
-        </div>
-
-        <div class="link-details {{showList}}">
-          <a href="/details">Details</a>
         </div>
       {{/each}}
     {{else}}

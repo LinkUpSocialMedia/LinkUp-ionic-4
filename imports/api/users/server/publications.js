@@ -18,9 +18,10 @@ Meteor.publish('users.inEvent', function usersInEvent(eventId) {
   }, {
     fields: {
       name: 1,
-      email: 1,
       avatar: 1,
       connections: 1,
+      events: 1,
+      created: 1,
     }
   });
 });
@@ -38,6 +39,8 @@ Meteor.publish('users.current', function usersCurrent() {
       avatar: 1,
       connections: 1,
       blocked: 1,
+      created: 1,
+      background: 1,
     }
   });
 });

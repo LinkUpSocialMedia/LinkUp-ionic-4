@@ -1,0 +1,64 @@
+<template name="Users_profile">
+  <div class="{{showForm}}" id="users-profile">
+    {{#each user in users}}
+      <div id="profile-header">
+        {{#if noUserBackground}}
+          <div id="temp-background"><span class="js-add-background"><i class="ion-ios-plus-outline"></i> Add cover photo</span></div>
+        {{else}}
+          <div id="background-cover" style="{{userBackground}}"></div>
+        {{/if}}
+        <div id="user-small">
+          <div id="user-avatar" style="{{userAvatar}}"></div>
+          <h2 class="{{noUserBackground}}">{{user.name}}</h2>
+        </div>
+      </div>
+      <div id="profile-info" class="list">
+        <div class="item item-icon-left">
+          <i class="icon ion-ios-people-outline"></i>
+          <span class="name">Connections</span>
+          <span class="item-note">{{user.connections.length}}</span>
+        </div>
+        <div class="item item-icon-left">
+          <i class="icon ion-ios-compose-outline"></i>
+          <span class="name">Created</span>
+          <span class="item-note">{{user.created.length}}</span>
+        </div>
+        <div class="item item-icon-left">
+          <i class="icon ion-ios-close-outline"></i>
+          <span class="name">Blocked</span>
+          <span class="item-note">{{user.blocked.length}}</span>
+        </div>
+        <div class="item js-connect">
+          <span>Connect</span>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div class="{{showForm}}" id="add-background">
+    <div class="{{showForm}}" id="add-background-content">
+      <i class="ion-ios-close-empty js-close-form"></i>
+      <h2>Upload a cover photo.</h2>
+      <form id="add-background-form">
+        <div class="list">
+          <label class="item item-input upload-background">
+            {{#unless loaded}}
+              Add cover photo <i class="ion-ios-upload-outline"></i>
+            {{/unless}}
+            {{#if loaded}}
+              Choose another
+            {{/if}}
+            <input type="file" name="background" id="background-image" accept="image/*">
+            <img id="uploaded-image" src="{{image}}">
+          </label>
+        </div>
+      </form>
+      <div class="bar bar-footer">
+        {{#if ready}}
+          <button class="button button-balanced ready" type="submit" form="add-background-form">Upload</button>
+        {{else}}
+          <button class="button button-balanced">Upload</button>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>

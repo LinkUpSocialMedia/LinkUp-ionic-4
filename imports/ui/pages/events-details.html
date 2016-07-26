@@ -3,7 +3,7 @@
     <div class="bar bar-header bar-light">
       <span></span>
       <h1 class="title">Details</h1>
-      <a href="/" class="ion-ios-close-empty"></a>
+      <a href="{{lastRoute}}" class="ion-ios-close-empty"></a>
     </div>
 
     {{#each event in events}}
@@ -31,7 +31,15 @@
 
       <div class="bar bar-footer">
         <a href="{{pathFor 'Events.comments' _id=event._id}}">Comments</a>
-        <button class="button button-balanced js-join-event">Join</button>
+        {{#if inEvent}}
+          {{#if ownEvent}}
+            <button class="button button-balanced js-cancel-event">Cancel Event</button>
+          {{else}}
+            <button class="button button-balanced js-leave-event">Leave</button>
+          {{/if}}
+        {{else}}
+          <button class="button button-balanced js-join-event">Join</button>
+        {{/if}}
       </div>
     {{/each}}
   </div>

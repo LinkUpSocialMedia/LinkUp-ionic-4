@@ -32,6 +32,11 @@ Template.App_body.onRendered(function() {
       $('.map-container').css('-webkit-filter', 'none');
       $('.events-page-header').css('background-color', 'inherit');
     }
+    if (FlowRouter.getRouteName() === 'Users.profile') {
+      $('#scrolling-content-container').css('overflow-y', 'hidden');      
+    } else {
+      $('#scrolling-content-container').css('overflow-y', 'scroll');
+    }
   });
 });
 

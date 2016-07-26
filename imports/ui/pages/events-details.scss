@@ -11,6 +11,9 @@
     box-shadow: none;
     background: none;
     background-color: white;
+    .title {
+      color: $brand-color;
+    }
     a {
       text-decoration: none;
       font-size: 35px;

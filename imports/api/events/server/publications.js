@@ -31,5 +31,15 @@ Meteor.publish('events.nearby', function eventsNearby(lat, lng) {
         $gt: currentUnixTime
       }
     }]
+  }, {
+    fields: Events.publicFields
   });
+});
+
+Meteor.publish('events.withUser', function eventsWithUser() {
+  if (!this.userId) {
+    return this.ready();
+  }
+
+  return Events.find({ usersGoing: { $in: [this.userId] } }, { fields: Events.publicFields });
 });

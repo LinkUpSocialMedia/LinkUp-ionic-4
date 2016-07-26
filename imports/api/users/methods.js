@@ -40,6 +40,7 @@ export const update = new ValidatedMethod({
         avatar,
         connections: [],
         blocked: [],
+        created: [],
       }
     });
   },
@@ -69,6 +70,7 @@ export const fullRegister = new ValidatedMethod({
         avatar,
         connections: [],
         blocked: [],
+        created: [],
       }
     });
 
@@ -97,20 +99,7 @@ export const joinEvent = new ValidatedMethod({
         'You have already joined this event!');
     }
 
-    const event = Events.findOne(eventId);
-
-    const eventInfo = {
-      eventId,
-      name: event.name,
-      dateOccuring: event.dateOccuring,
-      createdBy: event.createdBy,
-      location: event.location,
-      avatar: event.avatar,
-      description: event.description,
-      userAvatar: event.userAvatar,
-    };
-
-    Meteor.users.update(this.userId, { $push: { events: eventInfo } });
+    Meteor.users.update(this.userId, { $push: { events: eventId } });
     Events.update(eventId, { $push: { usersGoing: this.userId } });
   },
 });
@@ -126,22 +115,22 @@ export const leaveEvent = new ValidatedMethod({
         'You must be logged in to leave an event!');
     }
 
-    Meteor.users.update(this.userId, { $pull: { events: { eventId } } });
-    Events.update(eventId, { $inc: { usersGoing: -1 } });
+    Meteor.users.update(this.userId, { $pull: { events: eventId } });
+    Events.update(eventId, { $pull: { usersGoing: this.userId } });
   },
 });
 
-export const clearEvent = new ValidatedMethod({
-  name: 'users.clearEvent',
+export const addBackground = new ValidatedMethod({
+  name: 'users.addBackground',
   validate: new SimpleSchema({
-    eventId: { type: String, regEx: SimpleSchema.RegEx.Id },
+    background: { type: String, regEx: SimpleSchema.RegEx.Url },
   }).validator(),
-  run({ eventId }) {
+  run({ background }) {
     if (!this.userId) {
-      throw new Meteor.Error('users.clearEvent.accessDenied',
-        'You must be logged in to clear an event!');
+      throw new Meteor.Error('users.addBackground.accessDenied',
+        'You must be logged in to add a background!');
     }
 
-    Meteor.users.update(this.userId, { $pull: { events: { eventId } } });
+    Meteor.users.update(this.userId, { $set: { background } });
   },
 });

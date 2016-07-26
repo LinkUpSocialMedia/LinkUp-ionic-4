@@ -12,13 +12,23 @@ Meteor.startup(() => {
 
     if (!Meteor.users.findOne()) {
       options = {
-        email: 'fixture@fixtures.com',
+        email: 'fixture@fixtures.edu',
         password: 'password',
       };
       user = Accounts.createUser(options);
     } else {
       user = Meteor.users.findOne();
     }
+
+    Meteor.users.update(user._id, {
+      $set: {
+        name: 'Fixtures Guy',
+        email: 'fixture@fixtures.edu',
+        avatar: 'http://i.telegraph.co.uk/multimedia/archive/02830/cat_2830677b.jpg',
+        connections: [],
+        blocked: [],
+      }
+    });
 
     const createdBy = "Billy Bob";
 
@@ -50,7 +60,8 @@ Meteor.startup(() => {
 
       console.log(event);
 
-      Events.insert(event);
+      let id = Events.insert(event);
+      Meteor.users.update(user._id, { $push: { events: id, created: id } });
     }
   }
 });

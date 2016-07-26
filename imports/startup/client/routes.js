@@ -10,6 +10,7 @@ import '../../ui/layouts/app-body.js';
 import '../../ui/pages/events-map.js';
 import '../../ui/pages/users-links.js';
 import '../../ui/pages/events-details.js';
+import '../../ui/pages/users-profile.js';
 
 FlowRouter.route('/', {
   name: 'Events.list',

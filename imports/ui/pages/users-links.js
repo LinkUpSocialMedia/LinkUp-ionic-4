@@ -3,8 +3,11 @@ import '../components/link-card.js';
 
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
-import { Events } from '../../api/events/events.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { $ } from 'meteor/jquery';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+
+import { Events } from '../../api/events/events.js';
 
 Template.Users_links.onCreated(function() {
   this.state = new ReactiveDict();
@@ -13,23 +16,41 @@ Template.Users_links.onCreated(function() {
     showList: '',
   });
 
-  this.subscribe('users.current');
-  this.subscribe('users.inEvent', this.state.currentEvent);
-  this.subscribe('events.usersGoing');
+  this.subscribe('events.withUser');
+
+  this.autorun(() => {
+    this.subscribe('users.inEvent', this.state.get('currentEvent'));
+  });
+  this.autorun(() => {
+    this.subscribe('users.current');
+  });
+});
+
+Template.Users_links.onRendered(function() {
+  this.autorun(() => {
+    $('.link-user-list').css('display', 'none');
+    $('#'+this.state.get('currentEvent')).css('display', 'block');
+  });
 });
 
 Template.Users_links.helpers({
   linksExist() {
-    const user = Meteor.users.findOne();
-
-    if (user.events.length > 0) {
-      return true;
-    }
+    return true;
   },
   links() {
-    const user = Meteor.users.findOne();
+    const events = Events.find().fetch();
+    const userEvents = Meteor.users.findOne(Meteor.userId()).events;
 
-    return user.events;
+    eventsInBoth = [];
+
+    events.forEach((event) => {
+      if (userEvents.indexOf(event._id) != -1) {
+        eventsInBoth.push(event);
+      }
+    });
+
+    return eventsInBoth;
+    // return Events.find();
   },
   eventUsers() {
     const users = Meteor.users.find().fetch();
@@ -43,12 +64,7 @@ Template.Users_links.helpers({
 
     let usersNotSelf = users.filter(removeSelf);
 
-    console.log(usersNotSelf);
-
     return usersNotSelf;
-  },
-  usersGoingHelper() {
-    return Meteor.users.find().fetch().length;
   },
   showList() {
     return Template.instance().state.get('showList');
@@ -57,7 +73,11 @@ Template.Users_links.helpers({
 
 Template.Users_links.events({
   'click .link-card'(event, instance) {
-    instance.state.set('currentEvent', this.link.eventId);
+    instance.state.set('currentEvent', this.link._id);
     instance.state.set('showList', 'show');
   },
+  'click .link-details'() {
+    Session.set('eventDetails', this.link)
+    Session.set('lastRoute', FlowRouter.current().path);
+  }
 });

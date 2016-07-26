@@ -3,6 +3,8 @@ import './events-map.html';
 import { Template } from 'meteor/templating';
 import { Events } from '../../api/events/events.js';
 import { GoogleMaps } from 'meteor/dburles:google-maps';
+import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import '../components/event-card.js';
 
@@ -20,17 +22,9 @@ Template.Events_map.onCreated(function() {
 
         const location = new google.maps.LatLng(lat, lng);
 
-        const address = doc.address.slice(0, -11);
-
-        const eventDate = doc.dateOccuring;
-        const pad = (n) => {
-          return n < 10 ? "0" + n : n;
-        };
-        let date = pad(eventDate.getDate()) + "/" + pad(eventDate.getMonth() + 1) + ' at ' + eventDate.toString().slice(16, -18);
-
         const markerContent = '<div class="item marker-content">'+
           '<h2>'+doc.name+'</h2>'+
-          '<span class="users-going"><i class="ion-ios-people"></i> '+doc.usersGoing+'</span>'+
+          '<span class="users-going"><i class="ion-ios-people"></i> '+doc.usersGoing.length+'</span>'+
         '</div>'+
         '<div class="event-details-link"><a class="js-details">Details</a></div>';
 
@@ -52,6 +46,7 @@ Template.Events_map.onCreated(function() {
         const marker = new google.maps.Marker({
           position: location,
           title: doc.name,
+          icon: Meteor.absoluteUrl('pin_icon_x30.png'),
         });
 
         marker.addListener('click', function() {
@@ -101,10 +96,12 @@ Template.Events_map.helpers({
 
 Template.Events_map.events({
   'click .event-card'(event, instance) {
+    Session.set('lastRoute', FlowRouter.current().path);
     Session.set('eventDetails', this.event);
     FlowRouter.go('Events.details');
   },
   'click .js-details'() {
+    Session.set('lastRoute', FlowRouter.current().path);
     FlowRouter.go('Events.details');
   },
 });

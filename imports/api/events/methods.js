@@ -61,7 +61,7 @@ export const insert = new ValidatedMethod({
 
     let eventId = Events.insert(event);
 
-    Meteor.call('users.joinEvent', { eventId });
+    Meteor.users.update(user._id, { $push: { events: eventId, created: eventId } });
   },
 });
 
@@ -76,14 +76,28 @@ export const remove = new ValidatedMethod({
     if (!this.userId) {
       throw new Meteor.Error('events.remove.accessDenied',
         'You must be logged in to remove an event!');
-    } else if (this.userId !== event.createdBy) {
+    } else if (this.userId !== event.userId) {
       throw new Meteor.Error('events.remove.accessDenied',
         'You must own the event to remove it!');
     }
 
-    Meteor.users.update({}, {
+    Meteor.users.update({
+      events: {
+        $in: [eventId]
+      }
+    }, {
       $pull: {
-        events: { eventId }
+        events: eventId
+      }
+    });
+
+    Meteor.users.update({
+      created: {
+        $in: [eventId]
+      }
+    }, {
+      $pull: {
+        created: eventId
       }
     });
 
