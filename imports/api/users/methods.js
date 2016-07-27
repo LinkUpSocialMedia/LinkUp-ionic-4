@@ -134,3 +134,31 @@ export const addBackground = new ValidatedMethod({
     Meteor.users.update(this.userId, { $set: { background } });
   },
 });
+
+export const addAvatar = new ValidatedMethod({
+  name: 'users.addAvatar',
+  validate: new SimpleSchema({
+    avatar: { type: String, regEx: SimpleSchema.RegEx.Url },
+  }).validator(),
+  run({ avatar }) {
+    if (!this.userId) {
+      throw new Meteor.Error('users.addAvatar.accessDenied',
+        'You must be logged in to add an avatar!');
+    }
+
+    Meteor.users.update(this.userId, { $set: { avatar } });
+  },
+});
+
+export const deleteAccount = new ValidatedMethod({
+  name: 'users.deleteAccount',
+  validate: null,
+  run() {
+    if (!this.userId) {
+      throw new Meteor.Error('users.deleteAccount.accessDenied',
+        'You must be logged in to delete your account!');
+    }
+
+    Meteor.users.remove(this.userId);
+  },
+});

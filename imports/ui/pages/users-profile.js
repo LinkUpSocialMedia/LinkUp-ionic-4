@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { $ } from 'meteor/jquery';
+import loadImage from 'blueimp-load-image';
 
 Template.Users_profile.onCreated(function() {
   this.state = new ReactiveDict();
@@ -13,6 +14,8 @@ Template.Users_profile.onCreated(function() {
     imageLoaded: false,
     avatarErrors: true,
     formErrors: true,
+    avatarImage: '',
+    backgroundImage: '',
   });
 
   this.autorun(() => {
