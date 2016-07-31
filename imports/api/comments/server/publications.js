@@ -13,7 +13,7 @@ Meteor.publish('comments.ofEvent', function commentsOfEvent(eventId) {
   }
 
   return Comments.find({ eventId }, {
-    sort: { dateCreated: 1 }
+    sort: { dateCreated: -1 }
   }, {
     fields: Comments.publicFields,
   });

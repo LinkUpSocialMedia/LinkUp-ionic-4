@@ -30,7 +30,7 @@
       </div>
 
       <div class="bar bar-footer">
-        <a href="{{pathFor 'Events.comments' _id=event._id}}">Comments</a>
+        <a class="js-comments">Comments</a>
         {{#if inEvent}}
           {{#if ownEvent}}
             <button class="button button-balanced js-cancel-event">Cancel Event</button>
@@ -42,5 +42,47 @@
         {{/if}}
       </div>
     {{/each}}
+  </div>
+
+  <div class="{{showForm}}" id="comments">
+    <div class="{{showForm}}" id="comments-content">
+      <i class="ion-ios-close-empty js-close-comments"></i>
+      <h2>Comments</h2>
+      {{#if noComments}}
+        <h3>None yet! Add one below.</h3>
+      {{else}}
+        <div class="list">
+          {{#each comment in comments}}
+            {{> Comment_card comment=comment}}
+          {{/each}}
+        </div>
+      {{/if}}
+      <form id="add-comment" class="{{showAdd}}">
+        <label class="item item-input message">
+          <textarea name="message" id="comment-message" placeholder="Your comment" maxlength="200"></textarea>
+          <span class="char-count">{{charCount}} characters left</span>
+        </label>
+      </form>
+      <div class="bar bar-footer">
+        {{#if showAdd}}
+          <button class="button js-cancel-comment">Cancel</button>
+          {{#if ready}}
+            <button class="post button button-balanced ready" type="submit" form="add-comment">Post</button>
+          {{else}}
+            <button class="post button button-balanced">Post</button>
+          {{/if}}
+        {{else}}
+          <button class="js-add-comment button button-balanced">Add comment</button>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="Comment_card">
+  <div class="comment-card item item-avatar">
+    <img src="{{comment.avatar}}">
+    <h2>{{comment.name}} <span class="comment-time">{{comment.time}}</span><span class="likes-count">{{comment.likes.length}}</span><i class="js-like-comment ion-ios-heart{{liked}}"></i></h2>
+    <p>{{comment.message}}</p>
   </div>
 </template>

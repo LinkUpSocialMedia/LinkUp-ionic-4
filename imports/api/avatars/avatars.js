@@ -1,5 +1,6 @@
 import { Slingshot } from 'meteor/edgee:slingshot';
 import { Meteor } from 'meteor/meteor';
+import { Random } from 'meteor/random';
 
 Slingshot.fileRestrictions("avatarUploads", {
   allowedFileTypes: ["image/png", "image/jpeg", "image/gif"],
@@ -65,7 +66,7 @@ if (Meteor.isServer) {
     },
     key() {
       const user = Meteor.user();
-      return user._id + '-event';
+      return user._id + '-event-' + Random.id();
     },
     AWSAccessKeyId: Meteor.settings.private.AWSAccessKeyId,
     AWSSecretAccessKey: Meteor.settings.private.AWSSecretAccessKey,

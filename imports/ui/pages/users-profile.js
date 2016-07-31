@@ -4,7 +4,6 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { $ } from 'meteor/jquery';
-import loadImage from 'blueimp-load-image';
 
 Template.Users_profile.onCreated(function() {
   this.state = new ReactiveDict();
@@ -27,12 +26,6 @@ Template.Users_profile.onRendered(function() {
   if (Meteor.isCordova) {
     StatusBar.backgroundColorByHexString('#3b9845');
   }
-
-  // this.autorun(() => {
-  //   let user = Meteor.users.findOne();
-  //   $('#background-cover').css('background-image', 'url('+user.background+')');
-  //   $('#user-avatar').css('background-image', 'url('+user.avatar+')');
-  // });
 });
 
 Template.Users_profile.helpers({
@@ -66,16 +59,6 @@ Template.Users_profile.helpers({
       instance.state.set('formErrors', false);
       return true;
     }
-  },
-  userBackground() {
-    const user = Meteor.users.findOne();
-
-    return 'background-image:url('+user.background+')';
-  },
-  userAvatar() {
-    const user = Meteor.users.findOne();
-
-    return 'background-image:url('+user.avatar+')';
   },
 });
 

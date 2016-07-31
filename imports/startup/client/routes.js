@@ -11,6 +11,9 @@ import '../../ui/pages/events-map.js';
 import '../../ui/pages/users-links.js';
 import '../../ui/pages/events-details.js';
 import '../../ui/pages/users-profile.js';
+import '../../ui/pages/users-settings.js';
+import '../../ui/pages/events-add.js';
+import '../../ui/pages/events-add.js';
 
 FlowRouter.route('/', {
   name: 'Events.list',
@@ -44,6 +47,13 @@ FlowRouter.route('/profile', {
   name: 'Users.profile',
   action() {
     BlazeLayout.render('App_body', { main: 'Users_profile' });
+  },
+});
+
+FlowRouter.route('/settings', {
+  name: 'Users.settings',
+  action() {
+    BlazeLayout.render('App_body', { main: 'Users_settings' });
   },
 });
 

@@ -1,0 +1,258 @@
+#events-add {
+  background-color: #f5f5f5;
+  height: 100%;
+  .bar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    position: static;
+    border-bottom: none;
+    box-shadow: none;
+    background: none;
+    background-color: white;
+    a {
+      text-decoration: none;
+      font-size: 35px;
+      color: $brand-color;
+      position: relative;
+      z-index: 1;
+      text-align: right;
+      width: 30px;
+    }
+  }
+  .upload-avatar {
+    min-height: 15vh;
+    justify-content: center;
+    padding: 0px;
+    flex-direction: column;
+    padding-top: 5px;
+    #create-avatar {
+      display: none;
+    }
+    i {
+      font-size: 25px;
+    }
+    #uploaded-image {
+      max-width: 16vh;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      max-height: 16vh;
+    }
+  }
+  .description {
+    position: relative;
+    #event-description {
+      height: 80px;
+      resize: none;
+      &::-webkit-input-placeholder {
+        padding-left: 4px;
+      }
+    }
+    .char-count {
+      position: absolute;
+      right: 5px;
+      bottom: 0px;
+      font-size: 14px;
+      color: lighten(#444, 20%);
+    }
+  }
+  .address {
+    .js-clear-address {
+      padding-right: 5px;
+    }
+  }
+  .bar-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px 10px;
+    a {
+      text-decoration: none;
+      color: $brand-color;
+    }
+    .button {
+      background-color: white;
+      color: #5f5f5f;
+      border-radius: 5px;
+      line-height: 20px;
+      border-color: transparent;
+      &.ready {
+        background-color: $brand-color;
+        color: white;
+        &:active {
+          background-color: darken($brand-color, 20%);
+        }
+      }
+    }
+  }
+}
+#events-add-loading {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 10;
+  #loader-1 {
+    .preloader {
+      position: absolute;
+      margin-left: -55px;
+      margin-top: -100px;
+      height: 110px;
+      width: 110px;
+      left: 50%;
+      top: 50%;
+    }
+
+    svg {
+      width: 110px;
+      height: 110px;
+    }
+
+    path {
+      // stroke: #9ea1a4;
+      stroke: white;
+      stroke-width: 0.25;
+      fill: #241E20;
+    }
+
+    #cloud {
+      position: relative;
+      z-index: 2;
+    }
+
+    #cloud path {
+      fill: #dcfffb;
+    }
+
+    #sun {
+      margin-left: -10px;
+      margin-top: 6px;
+      opacity: 0;
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      left: 45px;
+      top: 15px;
+      z-index: 1;
+
+      animation-name: rotate;
+      animation-duration: 16000ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
+    #sun path {
+      stroke-width: 0.18;
+      fill: #feff00;
+    }
+
+
+    @keyframes rotate {
+      0% {
+        transform: rotateZ(0deg);
+      }
+
+      100% {
+        transform: rotateZ(360deg);
+      }
+    }
+
+    /* Rain */
+    .rain {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      margin-top: -32px;
+      margin-left: 19px;
+    }
+
+    .drop {
+      opacity: 1;
+      // background: #9ea1a4;
+      background: white;
+      display: block;
+      float: left;
+      width: 3px;
+      height: 10px;
+      margin-left: 4px;
+      border-radius: 0px 0px 6px 6px;
+
+      animation-name: drop;
+      animation-duration: 350ms;
+      animation-iteration-count: infinite;
+    }
+
+    .drop:nth-child(1) {
+      animation-delay: -130ms;
+    }
+
+    .drop:nth-child(2) {
+      animation-delay: -240ms;
+    }
+
+    .drop:nth-child(3) {
+      animation-delay: -390ms;
+    }
+
+    .drop:nth-child(4) {
+      animation-delay: -525ms;
+    }
+
+    .drop:nth-child(5) {
+      animation-delay: -640ms;
+    }
+
+    .drop:nth-child(6) {
+      animation-delay: -790ms;
+    }
+
+    .drop:nth-child(7) {
+      animation-delay: -900ms;
+    }
+
+    .drop:nth-child(8) {
+      animation-delay: -1050ms;
+    }
+
+    .drop:nth-child(9) {
+      animation-delay: -1130ms;
+    }
+
+    .drop:nth-child(10) {
+      animation-delay: -1300ms;
+    }
+
+
+    @keyframes drop {
+      50% {
+        height: 45px;
+        opacity: 0;
+      }
+
+      51% {
+        opacity: 0;
+      }
+
+      100% {
+        height: 1px;
+        opacity: 0;
+      }
+    }
+
+    .text {
+      font-family: Helvetica, 'Helvetica Neue', sans-serif;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-left: -43px;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 12px;
+      color: white;
+      width: 200px;
+      text-transform: uppercase;
+    }
+  }
+}

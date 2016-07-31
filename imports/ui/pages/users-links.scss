@@ -52,6 +52,7 @@
           margin: 0px 5px;
           width: 25px;
           height: 25px;
+          object-fit: cover;
         }
       }
     }
@@ -65,5 +66,186 @@
     text-decoration: none;
     color: $brand-color;
     font-size: 16px;
+  }
+  .no-links {
+    h2 {
+      text-align: center;
+      margin-top: 20vh;
+      font-size: 20px;
+    }
+    p {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+      line-height: 30px;
+      padding: 0px 15px;
+      a {
+        color: $brand-color;
+      }
+    }
+  }
+}
+#mini-profile {
+  position: absolute;
+  background-color: rgba(0,0,0,0.4);
+  left: 0px;
+  width: 100%;
+  z-index: 11;
+  height: 100%;
+  top: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  &.show-form {
+    top: 0px;
+  }
+  #mini-profile-content {
+    border-radius: 5px;
+    height: calc(84% - 44px);
+    width: 84%;
+    background-color: #f7f7f7;
+    margin-top: 100%;
+    overflow: hidden;
+    position: relative;
+    .js-close-form {
+      position: absolute;
+      background-color: white;
+      top: 0px;
+      right: 0px;
+      text-align: center;
+      border-radius: 0px 0px 0px 10px;
+      padding: 2px 5px;
+      z-index: 20;
+    }
+    &.show-form {
+      margin-top: 0px;
+    }
+    .user-mini-profile {
+      height: 100%;
+      background-color: #f7f7f7;
+      overflow: hidden;
+      #profile-header {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        height: 45%;
+        #background-cover {
+          height: 100%;
+          width: 100%;
+          border-bottom: thin solid #ddd;
+          object-fit: cover;
+          // transform: rotate(90deg);
+        }
+        #temp-background {
+          height: 100%;
+          width: 100%;
+          border-bottom: thin solid #ddd;
+        }
+        #user-small {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: calc(50% - 80px);
+          width: 50%;
+          left: 25%;
+          z-index: 1;
+          #user-avatar {
+            width: 28vw;
+            height: 28vw;
+            border-radius: 50%;
+            border: thin solid white;
+            object-fit: cover;
+            // transform: rotate(90deg);
+          }
+          h2 {
+            color: white;
+            font-size: 18px;
+            margin-top: 10px;
+            &.default {
+              color: #444;
+            }
+          }
+        }
+      }
+      #profile-info {
+        padding-top: 5px;
+        width: 100%;
+        padding-right: 10px;
+        background-color: #f7f7f7;
+        .item {
+          padding: 12px 10px 12px 5px;
+          margin: 0px 5px 5px 5px;
+          width: 100%;
+          i {
+            color: #a9a9a9;
+          }
+          svg {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 30px;
+            left: 11px;
+            path {
+              fill: #ccc;
+            }
+          }
+          .name {
+            margin-left: 45px;
+            color: #a9a9a9;
+            font-size: 18px;
+          }
+          .item-note {
+            color: $brand-color;
+            font-size: 18px;
+          }
+          &.js-connect {
+            margin-top: 10px;
+            span {
+              margin-left: 10px;
+              font-size: 18px;
+              color: $brand-color;
+            }
+          }
+        }
+      }
+    }
+  }
+  .js-close-form {
+    font-size: 30px;
+    float: right;
+    padding: 5px;
+    width: 30px;
+  }
+  h2 {
+    margin: 0px;
+    padding: 10px;
+    font-size: 18px;
+    color: $brand-color;
+  }
+  .bar-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px 10px;
+    bottom: 0px;
+    border-radius: 0px 0px 5px 5px;
+    border-top: thin solid #eaeaea;
+    width: 100%;
+    .button {
+      background-color: $brand-color;
+      color: white;
+      border-radius: 5px;
+      line-height: 20px;
+      border-color: transparent;
+      &:active {
+        background-color: darken($brand-color, 20%);
+      }
+    }
   }
 }

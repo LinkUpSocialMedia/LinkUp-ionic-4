@@ -14,9 +14,9 @@ Comments.schema = new SimpleSchema({
   eventId: { type: String, regEx: SimpleSchema.RegEx.Id },
   name: { type: String },
   avatar: { type: String, regEx: SimpleSchema.RegEx.Url },
-  message: { type: String },
+  message: { type: String, max: 200 },
   dateCreated: { type: Date },
-  likes: { type: Number, min: 0 },
+  likes: { type: [String], regEx: SimpleSchema.RegEx.Id },
 });
 
 Comments.attachSchema(Comments.schema);

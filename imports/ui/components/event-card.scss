@@ -4,11 +4,14 @@
   justify-content: space-between;
   border-radius: 3px;
   .event-card-image {
-    max-width: 50px !important;
-    max-height: 50px !important;
-    top: 10px !important;
-    left: 10px !important;
+    width: 55px !important;
+    height: 55px !important;
+    top: 8px !important;
+    left: 8px !important;
     border-radius: 0px !important;
+    object-fit: cover;
+    max-width: none !important;
+    max-height: none !important;
   }
   h2 {
     font-size: 15px;

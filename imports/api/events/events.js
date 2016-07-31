@@ -29,7 +29,7 @@ Events.schema = new SimpleSchema({
   userAvatar: { type: String, regEx: SimpleSchema.RegEx.Url },
   dateCreated: { type: Date },
   usersGoing: { type: [String], min: 0, regEx: SimpleSchema.RegEx.Id },
-  category: { type: String, },
+  // category: { type: String, },
 });
 
 Events.attachSchema(Events.schema);
@@ -44,5 +44,5 @@ Events.publicFields = {
   userAvatar: 1,
   dateOccuring: 1,
   usersGoing: 1,
-  category: 1,
+  // category: 1,
 };

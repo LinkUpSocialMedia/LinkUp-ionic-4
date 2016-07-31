@@ -14,6 +14,8 @@
       width: 20%;
       text-decoration: none;
       color: $brand-color;
+      position: relative;
+      z-index: 1;
       &:last-child {
         text-align: right;
       }
@@ -53,6 +55,17 @@
         color: white;
       }
     }
+    &.profile-page-header {
+      background-color: $brand-color;
+      .icon {
+        color: white;
+        position: relative;
+        z-index: 1;
+      }
+      .title {
+        color: white;
+      }
+    }
   }
   #content-container {
     // margin-top: 44px;
@@ -68,12 +81,20 @@
       }
       svg {
         width: 30px;
+        path {
+          fill: #9c9c9c;
+        }
       }
       &.active {
         border-bottom: 2px solid $brand-color;
         border-radius: 3px 3px 0px 0px;
         i {
           color: $brand-color;
+        }
+        svg {
+          path {
+            fill: $brand-color;
+          }
         }
       }
     }

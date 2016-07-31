@@ -99,7 +99,15 @@ export const joinEvent = new ValidatedMethod({
         'You have already joined this event!');
     }
 
+    const eventUsers = Events.findOne(eventId).usersGoing;
+
+    eventUsers.forEach((eventUser) => {
+      Meteor.users.update(eventUser, { $push: { connections: this.userId } });
+    });
+
     Meteor.users.update(this.userId, { $push: { events: eventId } });
+    Meteor.users.update(this.userId, { $addToSet: { connections: { $each: eventUsers } } });
+
     Events.update(eventId, { $push: { usersGoing: this.userId } });
   },
 });
@@ -117,6 +125,12 @@ export const leaveEvent = new ValidatedMethod({
 
     Meteor.users.update(this.userId, { $pull: { events: eventId } });
     Events.update(eventId, { $pull: { usersGoing: this.userId } });
+
+    const eventUsers = Events.findOne(eventId).usersGoing;
+
+    eventUsers.forEach((eventUser) => {
+      Meteor.users.update(eventUser, { $pull: { connections: this.userId } });
+    });
   },
 });
 

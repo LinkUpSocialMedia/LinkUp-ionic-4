@@ -14,6 +14,8 @@ Template.Users_links.onCreated(function() {
   this.state.setDefault({
     currentEvent: '',
     showList: '',
+    showForm: '',
+    miniUser: {},
   });
 
   this.subscribe('events.withUser');
@@ -35,7 +37,13 @@ Template.Users_links.onRendered(function() {
 
 Template.Users_links.helpers({
   linksExist() {
-    return true;
+    const userEvents = Meteor.users.findOne().events;
+
+    console.log(userEvents);
+
+    if (userEvents.length > 0) {
+      return true;
+    }
   },
   links() {
     const events = Events.find().fetch();
@@ -64,10 +72,27 @@ Template.Users_links.helpers({
 
     let usersNotSelf = users.filter(removeSelf);
 
+    if (usersNotSelf === 0) {
+      return [];
+    }
+
     return usersNotSelf;
   },
   showList() {
     return Template.instance().state.get('showList');
+  },
+  showForm() {
+    return Template.instance().state.get('showForm');
+  },
+  miniUser() {
+    return Template.instance().state.get('miniUser');
+  },
+  noUserBackground() {
+    const user = Template.instance().state.get('miniUser')
+
+    if (!user.background) {
+      return 'default';
+    }
   },
 });
 
@@ -79,5 +104,12 @@ Template.Users_links.events({
   'click .link-details'() {
     Session.set('eventDetails', this.link)
     Session.set('lastRoute', FlowRouter.current().path);
+  },
+  'click .js-mini-profile'(event, instance) {
+    instance.state.set('showForm', 'show-form');
+    instance.state.set('miniUser', this.user);
+  },
+  'click .js-close-form'(event, instance) {
+    instance.state.set('showForm', '');
   }
 });

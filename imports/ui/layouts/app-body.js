@@ -18,7 +18,7 @@ Template.App_body.onRendered(function() {
   this.autorun(() => {
     if (FlowRouter.getRouteName() === 'Events.list') {
       if (Meteor.isCordova) {
-        StatusBar.backgroundColorByHexString('#e9e5dd');
+        StatusBar.backgroundColorByHexString('#eaeaea');
       }
       $('.map-container').css('-webkit-filter', 'blur(10px)');
       $('.events-page-header').css('background-color', 'transparent');
@@ -33,7 +33,7 @@ Template.App_body.onRendered(function() {
       $('.events-page-header').css('background-color', 'inherit');
     }
     if (FlowRouter.getRouteName() === 'Users.profile') {
-      $('#scrolling-content-container').css('overflow-y', 'hidden');      
+      $('#scrolling-content-container').css('overflow-y', 'hidden');
     } else {
       $('#scrolling-content-container').css('overflow-y', 'scroll');
     }
@@ -74,5 +74,8 @@ Template.App_body.helpers({
 Template.App_body.events({
   'click .ion-navicon-round'() {
     Meteor.logout();
-  }
+  },
+  'click .js-add-event-page'() {
+    Session.set('lastRoute', FlowRouter.current().path);
+  },
 });

@@ -18,7 +18,7 @@
       height: 100%;
       width: 100%;
       border-bottom: thin solid #ddd;
-      background-size: cover;
+      object-fit: cover;
       // transform: rotate(90deg);
     }
     #temp-background {
@@ -48,7 +48,7 @@
         height: 28vw;
         border-radius: 50%;
         border: thin solid white;
-        background-size: cover;
+        object-fit: cover;
         // transform: rotate(90deg);
       }
       h2 {
@@ -67,11 +67,21 @@
     padding-right: 10px;
     background-color: #f7f7f7;
     .item {
-      padding: 15px 10px 15px 5px;
+      padding: 12px 10px 12px 5px;
       margin: 0px 5px 5px 5px;
       width: 100%;
       i {
         color: #a9a9a9;
+      }
+      svg {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 30px;
+        left: 11px;
+        path {
+          fill: #ccc;
+        }
       }
       .name {
         margin-left: 45px;
@@ -82,20 +92,20 @@
         color: $brand-color;
         font-size: 18px;
       }
-      &.js-connect {
-        margin-top: 10px;
-        span {
-          margin-left: 10px;
-          font-size: 18px;
-          color: $brand-color;
-        }
-      }
+      // &.js-connect {
+      //   margin-top: 10px;
+      //   span {
+      //     margin-left: 10px;
+      //     font-size: 18px;
+      //     color: $brand-color;
+      //   }
+      // }
     }
   }
 }
 #add-background {
   position: absolute;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.4);
   left: 0px;
   width: 100%;
   z-index: 5;

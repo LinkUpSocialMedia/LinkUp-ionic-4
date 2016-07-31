@@ -17,6 +17,7 @@ Template.Auth_create.onCreated(function() {
     avatarErrors: true,
     nameErrors: true,
     formErrors: true,
+    loading: false,
   });
 
   if (Meteor.isCordova) {
@@ -43,6 +44,9 @@ Template.Auth_create.helpers({
       instance.state.set('formErrors', false);
       return true;
     }
+  },
+  loading() {
+    return Template.instance().state.get('loading');
   },
 });
 
@@ -85,6 +89,18 @@ Template.Auth_create.events({
       }
 
       if (!errors) {
+        instance.state.set('loading', true);
+        $('#auth-create').css({
+          'filter': 'blur(5px)',
+          '-webkit-filter': 'blur(5px)',
+          '-moz-filter': 'blur(5px)',
+          '-o-filter': 'blur(5px)',
+          '-ms-filter': 'blur(5px)',
+        });
+        if (Meteor.isCordova) {
+          StatusBar.backgroundColorByHexString('#999');
+        }
+
         Meteor.call('users.register', { email, password });
         Meteor.loginWithPassword(email, password);
 
@@ -97,7 +113,10 @@ Template.Auth_create.events({
           } else {
             const avatar = downloadUrl;
             Meteor.call('users.update', { name, avatar });
-            FlowRouter.go('Events.list');
+            function changeRoute() {
+              FlowRouter.go('Events.list');
+            }
+            Meteor.setTimeout(changeRoute, 500);
           }
         });
       }

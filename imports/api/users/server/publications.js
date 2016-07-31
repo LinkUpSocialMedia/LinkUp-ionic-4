@@ -22,6 +22,7 @@ Meteor.publish('users.inEvent', function usersInEvent(eventId) {
       connections: 1,
       events: 1,
       created: 1,
+      background: 1,
     }
   });
 });

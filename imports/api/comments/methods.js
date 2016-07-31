@@ -8,7 +8,7 @@ export const insert = new ValidatedMethod({
   name: 'comments.insert',
   validate: new SimpleSchema({
     eventId: { type: String, regEx: SimpleSchema.RegEx.Id },
-    message: { type: String },
+    message: { type: String, max: 200 },
     name: { type: String },
     avatar: { type: String, regEx: SimpleSchema.RegEx.Url },
   }).validator(),
@@ -25,7 +25,7 @@ export const insert = new ValidatedMethod({
       avatar,
       message,
       dateCreated: new Date(),
-      likes: 0,
+      likes: [],
     };
 
     Comments.insert(comment);
@@ -44,7 +44,7 @@ export const like = new ValidatedMethod({
     }
 
     Comments.update(commentId, {
-      $inc: { likes: 1 }
+      $push: { likes: this.userId }
     });
   },
 });

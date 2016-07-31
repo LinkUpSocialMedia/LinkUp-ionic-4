@@ -25,6 +25,7 @@ Template.Auth_join.onCreated(function() {
 Template.Auth_join.onRendered(function() {
   if (Meteor.isCordova) {
     StatusBar.backgroundColorByHexString('#fff');
+    Keyboard.shrinkView(true);
   }
 });
 
