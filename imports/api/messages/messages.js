@@ -17,6 +17,7 @@ Messages.schema = new SimpleSchema({
   message: { type: String },
   time: { type: Date },
   receiverIds: { type: [String], min: 1, regEx: SimpleSchema.RegEx.Id },
+  chatGroupId: { type: String, regEx: SimpleSchema.RegEx.Id },
 });
 
 Messages.attachSchema(Messages.schema);
@@ -28,4 +29,5 @@ Messages.publicFields = {
   message: 1,
   time: 1,
   receiverIds: 1,
+  chatGroupId: 1,
 };

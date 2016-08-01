@@ -18,7 +18,11 @@
       </div>
     {{/if}}
     {{#if chatPage}}
-
+      <div class="bar bar-header bar-light links-page-header">
+        <span></span>
+        <h1 class="title">Chat</h1>
+        <a href="add-event" class="js-add-event-page ion-ios-compose-outline icon"></a>
+      </div>
     {{/if}}
     {{#if profilePage}}
       <div class="bar bar-header bar-light profile-page-header">
@@ -68,7 +72,7 @@
            </g>
         </svg>
       </a>
-      <a href="/chat" class="tab-item {{isActiveRoute 'Users.chat'}}">
+      <a href="/chat" class="tab-item {{isActiveRoute 'Messages.chat'}}">
         <i class="ion-ios-chatboxes-outline"></i>
       </a>
       <a href="/profile" class="tab-item {{isActiveRoute 'Users.profile'}}">

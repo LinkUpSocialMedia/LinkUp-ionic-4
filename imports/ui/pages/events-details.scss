@@ -16,11 +16,11 @@
     }
     a {
       text-decoration: none;
-      font-size: 35px;
+      font-size: 27px;
       color: $brand-color;
       position: relative;
       z-index: 1;
-      text-align: right;
+      text-align: left;
       width: 30px;
     }
   }
@@ -133,6 +133,7 @@
     background-color: white;
     margin-top: 100%;
     position: relative;
+    overflow: hidden;
     &.show-form {
       margin-top: 0px;
     }
@@ -158,6 +159,8 @@
     .list {
       border: none;
       margin-bottom: 44px;
+      overflow: auto;
+      height: calc(100% - 86px);
       .comment-card {
         padding: 2px 2px 2px 45px;
         width: 100%;

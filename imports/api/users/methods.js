@@ -176,3 +176,16 @@ export const deleteAccount = new ValidatedMethod({
     Meteor.users.remove(this.userId);
   },
 });
+
+export const getConnections = new ValidatedMethod({
+  name: 'users.getConnections',
+  validate: null,
+  run() {
+    if (!this.userId) {
+      throw new Meteor.Error('users.getConnections.accessDenied',
+        'You must be logged in to get your connections!');
+    }
+
+    return Meteor.user().connections;
+  },
+});

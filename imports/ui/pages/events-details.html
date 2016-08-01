@@ -1,9 +1,9 @@
 <template name="Events_details">
   <div id="events-details">
     <div class="bar bar-header bar-light">
-      <span></span>
+      <a href="{{lastRoute}}" class="ion-ios-arrow-back"></a>
       <h1 class="title">Details</h1>
-      <a href="{{lastRoute}}" class="ion-ios-close-empty"></a>
+      <span></span>
     </div>
 
     {{#each event in events}}

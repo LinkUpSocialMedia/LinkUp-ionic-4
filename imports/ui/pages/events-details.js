@@ -44,7 +44,7 @@ Template.Events_details.helpers({
     return [Session.get('eventDetails')];
   },
   totalComments() {
-    return 0;
+    return Comments.find().count();
   },
   eventDate(date) {
     const options = {
@@ -61,14 +61,14 @@ Template.Events_details.helpers({
   },
   inEvent() {
     const user = Meteor.users.findOne();
-    console.log(user.events.indexOf(Session.get('eventDetails')._id));
+
     if (user.events.indexOf(Session.get('eventDetails')._id) != -1) {
       return true;
     }
   },
   ownEvent() {
     const user = Meteor.users.findOne();
-    console.log(user.created);
+
     if (user.created.indexOf(Session.get('eventDetails')._id) != -1) {
       return true;
     }
@@ -77,7 +77,7 @@ Template.Events_details.helpers({
     return Template.instance().state.get('showForm');
   },
   comments() {
-    let comments = Comments.find().fetch();
+    let comments = Comments.find({}, { sort: { dateCreated: -1 } }).fetch();
 
     const currentDate = new Date();
     const currentTime = currentDate.getTime();
@@ -106,7 +106,7 @@ Template.Events_details.helpers({
   },
   noComments() {
     const comments = Comments.find().count();
-    console.log(comments);
+
     if (comments === 0) {
       return true;
     }
@@ -145,7 +145,7 @@ Template.Events_details.events({
   'click .js-comments'(event, instance) {
     instance.state.set('showForm', 'show-form');
     if (Meteor.isCordova) {
-      StatusBar.backgroundColorByHexString('#b3b3b3');
+      StatusBar.backgroundColorByHexString('#999');
     }
   },
   'click .js-close-comments'(event, instance) {
@@ -156,9 +156,11 @@ Template.Events_details.events({
   },
   'click .js-add-comment'(event, instance) {
     instance.state.set('showAdd', 'show-add');
+    $('#comments-content .list').css('height', 'calc(100% - 179px)');
   },
   'click .js-cancel-comment'(event, instance) {
     instance.state.set('showAdd', '');
+    $('#comments-content .list').css('height', 'calc(100% - 86px)');
   },
   'submit #add-comment'(event, instance) {
     event.preventDefault();
@@ -179,12 +181,23 @@ Template.Events_details.events({
 
     Meteor.call('comments.insert', comment);
     instance.state.set('showAdd', '');
+    event.target.message.value = '';
+    $('#comments-content .list').css('height', 'calc(100% - 86px)');
   },
   'input #comment-message'(event, instance) {
     const charMax = 200;
     instance.state.set('charCount', charMax - event.target.value.length);
     if (event.target.value.length > 0) {
       instance.state.set('ready', true);
+    }
+  },
+  'click #comments'(event, instance) {
+    console.log(event.target.id);
+    if (event.target.id === 'comments') {
+      instance.state.set('showForm', '');
+      if (Meteor.isCordova) {
+        StatusBar.backgroundColorByHexString('#fff');
+      }
     }
   },
 });

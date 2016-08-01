@@ -14,6 +14,7 @@ import '../../ui/pages/users-profile.js';
 import '../../ui/pages/users-settings.js';
 import '../../ui/pages/events-add.js';
 import '../../ui/pages/events-add.js';
+import '../../ui/pages/messages-chat.js';
 
 FlowRouter.route('/', {
   name: 'Events.list',
@@ -65,9 +66,9 @@ FlowRouter.route('/links', {
 });
 
 FlowRouter.route('/chat', {
-  name: 'Users.chat',
+  name: 'Messages.chat',
   action() {
-    BlazeLayout.render('App_body', { main: 'Users_chat' });
+    BlazeLayout.render('App_body', { main: 'Messages_chat' });
   },
 });
 

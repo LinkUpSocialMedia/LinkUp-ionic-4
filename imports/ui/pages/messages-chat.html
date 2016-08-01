@@ -1,0 +1,18 @@
+<template name="Messages_chat">
+  <div id="messages-chat">
+    <div class="list">
+      {{#each messageGroup in messageGroups}}
+        {{> Message_group group=group}}
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="Message_group">
+  <div class="message-group-card item item-avatar">
+    <!-- <img src="{{comment.avatar}}">
+    <h2>{{comment.name}} <span class="comment-time">{{comment.time}}</span><span class="likes-count">{{comment.likes.length}}</span><i class="js-like-comment ion-ios-heart{{liked}}"></i></h2>
+    <p>{{comment.message}}</p> -->
+    <h2>group.chatGroupId</h2>
+  </div>
+</template>

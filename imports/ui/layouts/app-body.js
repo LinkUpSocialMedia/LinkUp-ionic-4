@@ -60,7 +60,7 @@ Template.App_body.helpers({
     }
   },
   chatPage() {
-    if (FlowRouter.getRouteName() === 'Users.chat') {
+    if (FlowRouter.getRouteName() === 'Messages.chat') {
       return true;
     }
   },
