@@ -179,13 +179,35 @@ export const deleteAccount = new ValidatedMethod({
 
 export const getConnections = new ValidatedMethod({
   name: 'users.getConnections',
-  validate: null,
-  run() {
+  validate: new SimpleSchema({
+    name: { type: String },
+  }).validator(),
+  run({ name }) {
     if (!this.userId) {
       throw new Meteor.Error('users.getConnections.accessDenied',
         'You must be logged in to get your connections!');
     }
 
-    return Meteor.user().connections;
+    const connections = Meteor.user().connections;
+
+    const connectionDocs = Meteor.users.find({ _id: { $in: connections } }, { fields: { name: 1, avatar: 1 } }).fetch();
+
+    if (name === 'ALL_USER_CONTACTS') {
+      return connectionDocs;
+    }
+
+    let withName = [];
+
+    connectionDocs.forEach((connection) => {
+      const connectionName = connection.name.toUpperCase();
+
+      const subName = connectionName.substring(0, name.length);
+
+      if (subName === name.toUpperCase()) {
+        withName.push(connection);
+      }
+    });
+
+    return withName;
   },
 });

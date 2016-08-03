@@ -10,9 +10,8 @@
 
 <template name="Message_group">
   <div class="message-group-card item item-avatar">
-    <!-- <img src="{{comment.avatar}}">
-    <h2>{{comment.name}} <span class="comment-time">{{comment.time}}</span><span class="likes-count">{{comment.likes.length}}</span><i class="js-like-comment ion-ios-heart{{liked}}"></i></h2>
-    <p>{{comment.message}}</p> -->
-    <h2>group.chatGroupId</h2>
+    <img src="{{message.senderAvatar}}">
+    <h2>{{message.senderName}} <span class="message-time">{{comment.time}}</span></h2>
+    <p>{{message.message}}</p>
   </div>
 </template>

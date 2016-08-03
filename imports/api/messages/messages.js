@@ -16,8 +16,9 @@ Messages.schema = new SimpleSchema({
   senderAvatar: { type: String, regEx: SimpleSchema.RegEx.Url },
   message: { type: String },
   time: { type: Date },
-  receiverIds: { type: [String], min: 1, regEx: SimpleSchema.RegEx.Id },
-  chatGroupId: { type: String, regEx: SimpleSchema.RegEx.Id },
+  receiverName: { type: String },
+  receiverId: { type: String, regEx: SimpleSchema.RegEx.Id },
+  receiverAvatar: { type: String, regEx: SimpleSchema.RegEx.Url },
 });
 
 Messages.attachSchema(Messages.schema);
@@ -28,6 +29,7 @@ Messages.publicFields = {
   senderAvatar: 1,
   message: 1,
   time: 1,
-  receiverIds: 1,
-  chatGroupId: 1,
+  receiverName: 1,
+  receiverId: 1,
+  receiverAvatar: 1,  
 };

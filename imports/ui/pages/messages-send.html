@@ -1,0 +1,41 @@
+<template name="Messages_send">
+  <div id="messages-send">
+    <div class="bar bar-header bar-light">
+      <span></span>
+      <h1 class="title">New Message</h1>
+      <a href="/chat">Cancel</a>
+    </div>
+
+    <div id="choose-contact">
+      <label class="item item-input">
+        <span class="input-label">To: <span>{{receiverName}}</span></span>
+        <input type="text" id="contact" maxlength="50">
+      </label>
+      <i class="ion-ios-plus-outline js-all-contacts"></i>
+    </div>
+
+    <div class="contact-list">
+      {{#each contact in contacts}}
+        {{> Contact_card contact=contact}}
+      {{/each}}
+    </div>
+
+    <div class="messages">
+      {{#each message in messages}}
+        <p class="message-text {{owned}}">{{message.message}}</p>
+      {{/each}}
+    </div>
+
+    <form id="send-message">
+      <textarea id="message-text" placeholder="Your message"></textarea>
+      <button id="submit-send-message" type="submit" class="button {{ready}}">Send</button>
+    </form>
+  </div>
+</template>
+
+<template name="Contact_card">
+  <div class="contact-card js-choose-contact">
+    <img src="{{contact.avatar}}">
+    <h2>{{contact.name}}</h2>
+  </div>
+</template>

@@ -45,3 +45,18 @@ Meteor.publish('users.current', function usersCurrent() {
     }
   });
 });
+
+Meteor.publish('users.connections', function usersConnections() {
+  if (!this.userId) {
+    return this.ready();
+  }
+
+  const user = Meteor.users.findOne(this.userId);
+
+  return Meteor.users.find({ _id: { $in: user.connections } }, {
+    fields: {
+      name: 1,
+      avatar: 1,
+    }
+  });
+});
