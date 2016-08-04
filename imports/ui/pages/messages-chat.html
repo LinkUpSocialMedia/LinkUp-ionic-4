@@ -1,8 +1,8 @@
 <template name="Messages_chat">
   <div id="messages-chat">
     <div class="list">
-      {{#each messageGroup in messageGroups}}
-        {{> Message_group group=group}}
+      {{#each message in messageGroups}}
+        {{> Message_group message=message}}
       {{/each}}
     </div>
   </div>
@@ -10,8 +10,8 @@
 
 <template name="Message_group">
   <div class="message-group-card item item-avatar">
-    <img src="{{message.senderAvatar}}">
-    <h2>{{message.senderName}} <span class="message-time">{{comment.time}}</span></h2>
+    <img src="{{avatar}}">
+    <h2>{{name}} <span class="message-time">{{time}}</span></h2>
     <p>{{message.message}}</p>
   </div>
 </template>

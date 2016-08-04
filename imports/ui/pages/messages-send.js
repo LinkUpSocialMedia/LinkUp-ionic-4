@@ -6,6 +6,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { $ } from 'meteor/jquery';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Session } from 'meteor/session';
+import { Tracker } from 'meteor/tracker';
 
 import { Messages } from '../../api/messages/messages.js';
 
@@ -26,9 +27,16 @@ Template.Messages_send.onRendered(function() {
   if (Meteor.isCordova) {
     StatusBar.backgroundColorByHexString('#f7f7f7');
     Keyboard.shrinkView(true);
+    window.addEventListener('keyboardDidShow', () => {
+      const objDiv = document.getElementById("messages-scroll");
+      objDiv.scrollTop = objDiv.scrollHeight;
+    });
   }
   $('#content-container').css('margin-bottom', '0px');
   $('.tabs.tabs-icon-only').css('display', 'none');
+  
+  const objDiv = document.getElementById("messages-scroll");
+  objDiv.scrollTop = objDiv.scrollHeight;
 });
 
 Template.Messages_send.helpers({
@@ -43,6 +51,11 @@ Template.Messages_send.helpers({
   },
   messages() {
     return Messages.find();
+  },
+  owned(senderId) {
+    if (senderId === Meteor.userId()) {
+      return 'owned';
+    }
   },
 });
 
@@ -79,11 +92,22 @@ Template.Messages_send.events({
       }
     });
   },
-  'input #message-text'(event, instance) {
+  'input #messageText'(event, instance) {
     if (event.target.value.length > 0) {
       instance.state.set('ready', 'ready');
     } else {
       instance.state.set('ready', '');
     }
-  }
+  },
+  'submit #send-message'(event, instance) {
+    event.preventDefault();
+
+    const receiverId = instance.state.get('receiver')._id;
+    const message = event.target.messageText.value;
+
+    Meteor.call('messages.send', { message, receiverId });
+
+    event.target.messageText.value = '';
+    instance.state.set('ready', '');
+  },
 });

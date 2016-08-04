@@ -16,6 +16,7 @@ import '../../ui/pages/events-add.js';
 import '../../ui/pages/events-add.js';
 import '../../ui/pages/messages-chat.js';
 import '../../ui/pages/messages-send.js';
+import '../../ui/pages/messages-convo.js';
 
 FlowRouter.route('/', {
   name: 'Events.list',
@@ -77,6 +78,13 @@ FlowRouter.route('/new-message', {
   name: 'Messages.send',
   action() {
     BlazeLayout.render('App_body', { main: 'Messages_send' });
+  },
+});
+
+FlowRouter.route('/convo', {
+  name: 'Messages.convo',
+  action() {
+    BlazeLayout.render('App_body', { main: 'Messages_convo' });
   },
 });
 

@@ -111,5 +111,11 @@ Template.Users_links.events({
   },
   'click .js-close-form'(event, instance) {
     instance.state.set('showForm', '');
-  }
+  },
+  'click .js-message'(event, instance) {
+    Session.set('messageId', instance.state.get('miniUser')._id);
+    Session.set('messageName', instance.state.get('miniUser').name);
+
+    FlowRouter.go('Messages.convo');
+  },
 });

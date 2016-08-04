@@ -94,7 +94,11 @@ Template.Events_details.helpers({
         let days = Math.floor(hh / 24);
         comment.time = days + ' days ago';
       } else if (hh > 0) {
-        comment.time = hh + ' hours ago';
+        if (hh === 1) {
+          comment.time = hh + ' hour ago';
+        } else {
+          comment.time = hh + ' hours ago';
+        }        
       } else if (mm > 0) {
         comment.time = mm + ' minutes ago';
       } else {

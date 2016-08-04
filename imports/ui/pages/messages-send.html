@@ -20,14 +20,16 @@
       {{/each}}
     </div>
 
-    <div class="messages">
+    <div id="messages-scroll" class="messages">
       {{#each message in messages}}
-        <p class="message-text {{owned}}">{{message.message}}</p>
+        <div class="message-text {{owned message.senderId}}">
+          <p class="{{owned message.senderId}}">{{message.message}}</p>
+        </div>
       {{/each}}
     </div>
 
     <form id="send-message">
-      <textarea id="message-text" placeholder="Your message"></textarea>
+      <textarea id="messageText" placeholder="Your message"></textarea>
       <button id="submit-send-message" type="submit" class="button {{ready}}">Send</button>
     </form>
   </div>

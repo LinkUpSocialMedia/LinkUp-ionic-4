@@ -11,7 +11,7 @@ export const send = new ValidatedMethod({
     message: { type: String },
     receiverId: { type: String, regEx: SimpleSchema.RegEx.Id },
   }).validator(),
-  run({ message, receiverIds }) {
+  run({ message, receiverId }) {
     if (!this.userId) {
       throw new Meteor.Error('messages.send.accessDenied',
         'You must be logged in to send a message!');
@@ -27,9 +27,26 @@ export const send = new ValidatedMethod({
       message,
       time: new Date(),
       receiverName: receiver.name,
-      receiverId: receiver._id,
+      receiverId,
       receiverAvatar: receiver.avatar,
     };
+
+    const messageGroup = Messages.find({
+      $or: [{
+        $and: [{ senderId: this.userId }, { receiverId: receiverId }]
+      }, {
+        $and: [{ senderId: receiverId }, { receiverId: this.userId }]
+      }]
+    }, {
+      fields: { messageGroupId: 1 },
+      limit: 1
+    }).fetch() || [];
+
+    if (messageGroup.length > 0) {
+      chat.messageGroupId = messageGroup[0].messageGroupId;
+    } else {
+      chat.messageGroupId = Random.id();
+    }
 
     Messages.insert(chat);
   },

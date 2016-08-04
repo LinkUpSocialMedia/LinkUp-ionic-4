@@ -1,0 +1,22 @@
+<template name="Messages_convo">
+  <div id="messages-convo">
+    <div class="bar bar-header bar-light">
+      <a href="/chat"><i class="ion-ios-arrow-back"></i> Messages</a>
+      <h1 class="title">{{chatUser}}</h1>
+      <span></span>
+    </div>
+
+    <div id="messages-scroll" class="messages">
+      {{#each message in messages}}
+        <div class="message-text {{owned message.senderId}}">
+          <p class="{{owned message.senderId}}">{{message.message}}</p>
+        </div>
+      {{/each}}
+    </div>
+
+    <form id="send-message">
+      <textarea id="messageText" placeholder="Your message"></textarea>
+      <button id="submit-send-message" type="submit" class="button {{ready}}">Send</button>
+    </form>
+  </div>
+</template>

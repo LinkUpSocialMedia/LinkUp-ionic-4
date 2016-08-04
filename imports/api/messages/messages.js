@@ -19,6 +19,7 @@ Messages.schema = new SimpleSchema({
   receiverName: { type: String },
   receiverId: { type: String, regEx: SimpleSchema.RegEx.Id },
   receiverAvatar: { type: String, regEx: SimpleSchema.RegEx.Url },
+  messageGroupId: { type: String, regEx: SimpleSchema.RegEx.Id },
 });
 
 Messages.attachSchema(Messages.schema);
@@ -31,5 +32,6 @@ Messages.publicFields = {
   time: 1,
   receiverName: 1,
   receiverId: 1,
-  receiverAvatar: 1,  
+  receiverAvatar: 1,
+  messageGroupId: 1,
 };

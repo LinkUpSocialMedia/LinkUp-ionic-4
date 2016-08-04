@@ -1,4 +1,4 @@
-#messages-send {
+#messages-convo {
   height: 100%;
   position: relative;
   z-index: 6;
@@ -7,62 +7,22 @@
     background-color: #f7f7f7;
     a {
       text-decoration: none;
-      font-size: 16px;
+      font-size: 18px;
       color: $brand-color;
       position: relative;
       z-index: 1;
-    }
-  }
-  #choose-contact {
-    padding-top: 44px;
-    position: relative;
-    margin-bottom: 5px;
-    .item-input {
-      background-color: #f7f7f7;
-      .input-label {
-        width: auto;
-        span {
-          color: $brand-color;
-          margin-left: 3px;
-        }
-      }
-    }
-    .js-all-contacts {
-      position: absolute;
-      top: 54px;
-      right: 6px;
-      font-size: 27px;
-      color: $brand-color;
-      z-index: 2;
-    }
-  }
-  .contact-list {
-    .contact-card {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      position: relative;
-      img {
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        object-fit: cover;
-        position: absolute;
-        top: 7px;
-      }
-      h2 {
-        font-size: 16px;
-        color: $brand-color;
-        border-bottom: thin solid #dcdcdc;
-        padding: 10px;
-        padding-left: 33px;
-        width: 95%;
-        margin: 0px;
+      top: -5px;
+      i {
+        font-size: 30px;
+        position: relative;
+        top: 5px;
+        padding-right: 1px;
       }
     }
   }
   .messages {
     overflow-y: auto;
+    padding-top: 49px;
     height: calc(100% - 178px);
     .message-text {
       text-align: left;
