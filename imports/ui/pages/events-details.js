@@ -17,9 +17,9 @@ Template.Events_details.onCreated(function() {
     showAdd: '',
   });
 
-  this.autorun(() => {
-    this.subscribe('users.current');
-  });
+  // this.autorun(() => {
+  //   this.subscribe('users.current');
+  // });
   this.autorun(() => {
     this.state.set('user', Meteor.users.findOne());
   });
@@ -98,7 +98,7 @@ Template.Events_details.helpers({
           comment.time = hh + ' hour ago';
         } else {
           comment.time = hh + ' hours ago';
-        }        
+        }
       } else if (mm > 0) {
         comment.time = mm + ' minutes ago';
       } else {

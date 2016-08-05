@@ -35,6 +35,7 @@
     <div id="content-container" class="scroll-content ionic-scroll">
       <div class="content overflow-scroll" id="scrolling-content-container">
         {{#if Template.subscriptionsReady}}
+          {{loaded}}
           {{> Template.dynamic template=main}}
         {{else}}
           {{> App_loading}}

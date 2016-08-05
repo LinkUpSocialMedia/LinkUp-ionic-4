@@ -1,4 +1,5 @@
 import './app-body.html';
+import '../components/loading.js';
 
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Template } from 'meteor/templating';
@@ -12,6 +13,11 @@ Template.App_body.onCreated(function() {
       FlowRouter.go('Auth.startup');
     }
   });
+
+  this.autorun(() => {
+    this.subscribe('users.current');
+  });
+  this.subscribe('events.nearby', 44.478504, -73.199986);
 });
 
 Template.App_body.onRendered(function() {
@@ -41,6 +47,13 @@ Template.App_body.onRendered(function() {
 });
 
 Template.App_body.helpers({
+  loaded() {
+    function setBackground() {
+      $('.map-container').css('-webkit-filter', 'blur(10px)');
+      $('.events-page-header').css('background-color', 'transparent');
+    }
+    Meteor.setTimeout(setBackground, 10);
+  },
   eventsPage() {
     const route = FlowRouter.getRouteName();
 

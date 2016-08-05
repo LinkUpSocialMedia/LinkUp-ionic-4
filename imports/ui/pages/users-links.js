@@ -23,9 +23,10 @@ Template.Users_links.onCreated(function() {
   this.autorun(() => {
     this.subscribe('users.inEvent', this.state.get('currentEvent'));
   });
-  this.autorun(() => {
-    this.subscribe('users.current');
-  });
+  
+  // this.autorun(() => {
+  //   this.subscribe('users.current');
+  // });
 });
 
 Template.Users_links.onRendered(function() {

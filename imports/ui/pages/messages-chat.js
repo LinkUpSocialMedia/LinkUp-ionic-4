@@ -10,9 +10,9 @@ import { Session } from 'meteor/session';
 Template.Messages_chat.onCreated(function() {
   this.subscribe('messages.ofUser');
 
-  this.autorun(() => {
-    this.subscribe('users.current');
-  });
+  // this.autorun(() => {
+  //   this.subscribe('users.current');
+  // });
 });
 
 Template.Messages_chat.onRendered(function() {

@@ -4,9 +4,9 @@ import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 
 Template.Users_settings.onCreated(function() {
-  this.autorun(() => {
-    this.subscribe('users.current');
-  });
+  // this.autorun(() => {
+  //   this.subscribe('users.current');
+  // });
 });
 
 Template.Users_settings.onRendered(function() {

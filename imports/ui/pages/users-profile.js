@@ -17,9 +17,9 @@ Template.Users_profile.onCreated(function() {
     backgroundImage: '',
   });
 
-  this.autorun(() => {
-    this.subscribe('users.current');
-  });
+  // this.autorun(() => {
+  //   this.subscribe('users.current');
+  // });
 });
 
 Template.Users_profile.onRendered(function() {

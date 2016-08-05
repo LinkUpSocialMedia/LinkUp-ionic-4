@@ -9,7 +9,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import '../components/event-card.js';
 
 Template.Events_map.onCreated(function() {
-  this.subscribe('events.nearby', 44.478504, -73.199986);
+  // this.subscribe('events.nearby', 44.478504, -73.199986);
 
   GoogleMaps.ready('eventMap', function(map) {
     let markers = [];

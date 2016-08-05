@@ -2,6 +2,7 @@
   padding-top: 49px;
   background-color: #f7f7f7;
   height: 100%;
+  overflow: hidden;
   .link-card {
     display: flex;
     align-items: center;
@@ -28,7 +29,7 @@
   }
   .link-user-list {
     display: none;
-    overflow: auto;
+    overflow-y: auto;
     white-space: nowrap;
     padding: 0px 5px;
     width: calc(100% - 10px);
@@ -92,20 +93,19 @@
   width: 100%;
   z-index: 11;
   height: 100%;
-  top: 100%;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   z-index: 10;
+  top: 0px;
   &.show-form {
-    top: 0px;
+    display: flex;
   }
   #mini-profile-content {
     border-radius: 5px;
     height: calc(84% - 44px);
     width: 84%;
     background-color: #f7f7f7;
-    margin-top: 100%;
     overflow: hidden;
     position: relative;
     .js-close-form {
@@ -117,9 +117,6 @@
       border-radius: 0px 0px 0px 10px;
       padding: 2px 5px;
       z-index: 20;
-    }
-    &.show-form {
-      margin-top: 0px;
     }
     .user-mini-profile {
       height: 100%;
