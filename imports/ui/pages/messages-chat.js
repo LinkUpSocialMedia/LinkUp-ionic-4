@@ -39,6 +39,11 @@ Template.Messages_chat.helpers({
 
     return grouped;
   },
+  noMessages() {
+    if (Messages.find().count() === 0) {
+      return true;
+    }
+  },
 });
 
 Template.Messages_chat.events({

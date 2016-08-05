@@ -6,6 +6,7 @@ import { Meteor } from 'meteor/meteor';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { $ } from 'meteor/jquery';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Session } from 'meteor/session';
 
 import { Events } from '../../api/events/events.js';
 
@@ -23,7 +24,7 @@ Template.Users_links.onCreated(function() {
   this.autorun(() => {
     this.subscribe('users.inEvent', this.state.get('currentEvent'));
   });
-  
+
   // this.autorun(() => {
   //   this.subscribe('users.current');
   // });
@@ -118,5 +119,8 @@ Template.Users_links.events({
     Session.set('messageName', instance.state.get('miniUser').name);
 
     FlowRouter.go('Messages.convo');
+  },
+  'click .js-add-event-link'() {
+    Session.set('lastRoute', FlowRouter.current().path);
   },
 });

@@ -22,7 +22,7 @@ Template.Events_add.onCreated(function() {
   });
 
   if (Meteor.isCordova) {
-    Keyboard.shrinkView(true);
+    Keyboard.shrinkView(false);
     StatusBar.backgroundColorByHexString('#fff');
   }
 });

@@ -2,6 +2,11 @@
   height: 100%;
   padding-top: 44px;
   background-color: #f7f7f7;
+  .no-messages {
+    text-align: center;
+    margin-top: 20vh;
+    font-size: 20px;
+  }
   .list {
     .message-group-card {
       img {

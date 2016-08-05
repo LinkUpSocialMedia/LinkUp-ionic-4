@@ -2,7 +2,8 @@
   <div id="app-body">
     {{#if eventsPage}}
       <div class="bar bar-header bar-light events-page-header">
-        <a class="ion-navicon-round icon"></a>
+        <!-- <a class="ion-navicon-round icon"></a> -->
+        <span class="icon"></span>
         <div class="map-or-list">
           <a href="/" class="{{isActiveRoute 'Events.list'}}">List</a>
           <a href="/map" class="{{isActiveRoute 'Events.map'}}">Map</a>
@@ -12,7 +13,8 @@
     {{/if}}
     {{#if linksPage}}
       <div class="bar bar-header bar-light links-page-header">
-        <a class="ion-ios-search icon"></a>
+        <!-- <a class="ion-ios-search icon"></a> -->
+        <span class="icon"></span>
         <h1 class="title">Links</h1>
         <a href="add-event" class="js-add-event-page ion-ios-plus-outline icon"></a>
       </div>

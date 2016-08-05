@@ -1,5 +1,8 @@
 <template name="Messages_chat">
   <div id="messages-chat">
+    {{#if noMessages}}
+      <h2 class="no-messages">No messages yet!</h2>
+    {{/if}}
     <div class="list">
       {{#each message in messageGroups}}
         {{> Message_group message=message}}

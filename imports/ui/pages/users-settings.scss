@@ -20,6 +20,9 @@
     }
   }
   .list {
+    a {
+      color: $brand-color;
+    }
     .item {
       padding: 10px 12px;
       font-size: 15px;
@@ -37,6 +40,10 @@
       }
       &.divide {
         margin-top: 10px;
+      }
+      &.js-logout {
+        margin-top: 10px;
+        color: $brand-color;
       }
     }
   }

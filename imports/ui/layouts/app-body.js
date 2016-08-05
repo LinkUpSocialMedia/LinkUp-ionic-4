@@ -33,7 +33,7 @@ Template.App_body.onRendered(function() {
         StatusBar.backgroundColorByHexString('#f2efea');
       }
       $('.events-page-header').css('background-color', 'rgba(255,255,255,0.4)');
-      $('.map-container').css('-webkit-filter', 'none');
+      $('.map-container').css('-webkit-filter', 'blur(0px)');
     } else {
       $('.map-container').css('-webkit-filter', 'none');
       $('.events-page-header').css('background-color', 'inherit');
@@ -52,7 +52,9 @@ Template.App_body.helpers({
       $('.map-container').css('-webkit-filter', 'blur(10px)');
       $('.events-page-header').css('background-color', 'transparent');
     }
-    Meteor.setTimeout(setBackground, 10);
+    if (FlowRouter.getRouteName() === 'Events.list') {
+      Meteor.setTimeout(setBackground, 10);
+    }
   },
   eventsPage() {
     const route = FlowRouter.getRouteName();
@@ -85,9 +87,6 @@ Template.App_body.helpers({
 });
 
 Template.App_body.events({
-  'click .ion-navicon-round'() {
-    Meteor.logout();
-  },
   'click .js-add-event-page'() {
     Session.set('lastRoute', FlowRouter.current().path);
   },

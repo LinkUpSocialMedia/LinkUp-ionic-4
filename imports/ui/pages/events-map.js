@@ -78,7 +78,7 @@ Template.Events_map.onCreated(function() {
 
 Template.Events_map.helpers({
   events() {
-    return Events.find();
+    return Events.find({}, { sort: { dateOccuring: -1 } });
   },
   mapOptions() {
     if (GoogleMaps.loaded()) {

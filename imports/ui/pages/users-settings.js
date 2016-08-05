@@ -23,3 +23,9 @@ Template.Users_settings.helpers({
     return Meteor.users.findOne().email;
   },
 });
+
+Template.Users_settings.events({
+  'click .js-logout'() {
+    Meteor.logout();
+  }
+});
