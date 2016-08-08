@@ -6,6 +6,9 @@ import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { $ } from 'meteor/jquery';
 
+import { Events } from '../../api/events/events.js';
+import { Messages } from '../../api/messages/messages.js';
+
 Template.App_body.onCreated(function() {
   Session.set('started', true);
   this.autorun(() => {
@@ -17,7 +20,26 @@ Template.App_body.onCreated(function() {
   this.autorun(() => {
     this.subscribe('users.current');
   });
+
+  // this.subscribe('messages.ofUser');
+
   this.subscribe('events.nearby', 44.478504, -73.199986);
+
+  // Messages.find({ senderId: { $ne: Meteor.userId } }, { fields: { senderId: 1 } }).observe({
+  //   added(doc) {
+  //     if (FlowRouter.getRouteName() !== 'Messages.chat' || FlowRouter.getRouteName() !== 'Messages.send' || FlowRouter.getRouteName() !== 'Messages.convo') {
+  //       Session.set('newMessage', true);
+  //     }
+  //   }
+  // });
+
+  Events.find({ userId: { $ne: Meteor.userId() } }, { fields: { name: 1 } }).observe({
+    added(doc) {
+      if (FlowRouter.getRouteName() !== 'Events.list') {
+        Session.set('newEvent', true);
+      }
+    }
+  });
 });
 
 Template.App_body.onRendered(function() {
@@ -42,6 +64,11 @@ Template.App_body.onRendered(function() {
       $('#scrolling-content-container').css('overflow-y', 'hidden');
     } else {
       $('#scrolling-content-container').css('overflow-y', 'scroll');
+    }
+
+    if (FlowRouter.getRouteName() === 'Events.list' || FlowRouter.getRouteName() === 'Events.map' || FlowRouter.getRouteName() === 'Users.links') {
+      $('#content-container').css('margin-bottom', '49px');
+      $('.tabs.tabs-icon-only').css('display', 'flex');
     }
   });
 });
@@ -84,10 +111,19 @@ Template.App_body.helpers({
       return true;
     }
   },
+  newEvent() {
+    return Session.get('newEvent');
+  },
+  // newMessage() {
+  //   return Session.get('newMessage');
+  // },
 });
 
 Template.App_body.events({
   'click .js-add-event-page'() {
     Session.set('lastRoute', FlowRouter.current().path);
   },
+  'click .js-events-tab'() {
+    Session.set('newEvent', false);
+  }
 });

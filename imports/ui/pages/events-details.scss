@@ -118,25 +118,22 @@
   width: 100%;
   z-index: 5;
   height: 100%;
-  top: 100%;
-  display: flex;
+  top: 0px;
+  display: none;
   align-items: center;
   justify-content: center;
   z-index: 10;
   &.show-form {
-    top: 0px;
+    display: flex;
   }
   #comments-content {
     border-radius: 5px;
     height: calc(84% - 44px);
     width: 84%;
     background-color: white;
-    margin-top: 100%;
+    margin-top: 0px;
     position: relative;
-    overflow: hidden;
-    &.show-form {
-      margin-top: 0px;
-    }
+    overflow: hidden;    
     .js-close-comments {
       position: absolute;
       background-color: white;

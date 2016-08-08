@@ -76,9 +76,13 @@ Template.Events_map.onCreated(function() {
   });
 });
 
+Template.Events_map.onRendered(function() {
+  Session.set('newEvent', false);
+});
+
 Template.Events_map.helpers({
   events() {
-    return Events.find({}, { sort: { dateOccuring: -1 } });
+    return Events.find({}, { sort: { unixTime: 1 } });
   },
   mapOptions() {
     if (GoogleMaps.loaded()) {

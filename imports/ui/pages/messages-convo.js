@@ -14,6 +14,8 @@ Template.Messages_convo.onCreated(function() {
   });
 
   this.subscribe('messages.withUser', Session.get('messageId'));
+  // this.subscribe('messages.byGroupId', Session.get('messageGroupId'));
+  // console.log(Session.get('messageGroupId'));
 });
 
 Template.Messages_convo.onRendered(function() {

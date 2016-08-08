@@ -33,6 +33,9 @@ Template.Events_details.onRendered(function() {
     StatusBar.backgroundColorByHexString('#fff');
     Keyboard.shrinkView(false);
   }
+
+  $('#content-container').css('margin-bottom', '0px');
+  $('.tabs.tabs-icon-only').css('display', 'none');
 });
 
 Template.Events_details.helpers({

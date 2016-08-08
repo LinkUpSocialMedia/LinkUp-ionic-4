@@ -76,8 +76,18 @@
     background-color: white;
     border-top: thin solid #eaeaea;
     .tab-item {
+      position: relative;
       i {
         font-size: 30px;
+      }
+      .notification {
+        height: 10px;
+        width: 10px;
+        position: absolute;
+        background-color: $brand-color;
+        top: 5px;
+        right: 25%;
+        border-radius: 50%;
       }
       svg {
         width: 30px;

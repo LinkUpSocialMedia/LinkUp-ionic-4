@@ -35,6 +35,7 @@
     width: calc(100% - 10px);
     margin: 5px;
     margin-top: -8px;
+    overflow-x: scroll;
     span {
       display: inline-block;
       h4 {

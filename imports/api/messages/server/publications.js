@@ -34,3 +34,17 @@ Meteor.publish('messages.withUser', function messagesWithUser(userId) {
     sort: { time: 1 }, fields: Messages.publicFields
   });
 });
+
+// Meteor.publish('messages.byGroupId', function messagesByGroupId(messageGroupId) {
+//   new SimpleSchema({
+//     messageGroupId: { type: String },
+//   }).validate({ messageGroupId });
+//
+//   if (!this.userId) {
+//     return this.ready();
+//   }
+//
+//   console.log(Messages.find({ messageGroupId }, { sort: { time: 1 } }).fetch());
+//
+//   return Messages.find({ messageGroupId }, { sort: { time: 1 } });
+// });

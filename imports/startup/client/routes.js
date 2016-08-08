@@ -35,7 +35,7 @@ FlowRouter.route('/map', {
 FlowRouter.route('/details', {
   name: 'Events.details',
   action() {
-    BlazeLayout.render('Events_details');
+    BlazeLayout.render('App_body', { main: 'Events_details' });
   },
 });
 

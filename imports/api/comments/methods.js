@@ -43,8 +43,12 @@ export const like = new ValidatedMethod({
         'You must be logged in to like a comment!');
     }
 
-    Comments.update(commentId, {
-      $push: { likes: this.userId }
-    });
+    comment = Comments.findOne(commentId);
+
+    if (comment.likes.indexOf(this.userId) === -1) {
+      Comments.update(commentId, {
+        $push: { likes: this.userId }
+      });
+    }
   },
 });

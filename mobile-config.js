@@ -30,6 +30,8 @@ App.accessRule('https://*.google.com/*');
 App.accessRule('https://*.gstatic.com/*');
 App.accessRule('http://linkup.meteorapp.com/*');
 App.accessRule("*", {external: false});
+App.accessRule('http://*');
+App.accessRule('https://*');
 
 App.setPreference('AutoHideSplashScreen', 'true');
 App.setPreference('BackupWebStorage', 'local');

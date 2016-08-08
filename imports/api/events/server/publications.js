@@ -32,7 +32,7 @@ Meteor.publish('events.nearby', function eventsNearby(lat, lng) {
       }
     }]
   }, {
-    fields: Events.publicFields, sort: { dateOccuring: 1 }
+    fields: Events.publicFields, sort: { unixTime: 1 }
   });
 });
 

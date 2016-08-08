@@ -2,6 +2,8 @@ import './register-api.js';
 import './fixtures.js';
 import { Meteor } from 'meteor/meteor';
 
+import { Events } from '../../api/events/events.js';
+
 // if (Meteor.userId()) {
 //   const userEvents = Meteor.user().events;
 //   const date = new Date();

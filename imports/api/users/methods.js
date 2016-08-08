@@ -46,37 +46,37 @@ export const update = new ValidatedMethod({
   },
 });
 
-export const fullRegister = new ValidatedMethod({
-  name: 'users.fullRegister',
-  validate: new SimpleSchema({
-    email: { type: String, regEx: SimpleSchema.RegEx.Email },
-    password: { type: String },
-    name: { type: String },
-    avatar: { type: String, regEx: SimpleSchema.RegEx.Url },
-  }).validator(),
-  run({ email, password, name, avatar }) {
-    console.log('in reg');
-    const options = {
-      email,
-      password,
-    };
-
-    const userId = Accounts.createUser(options);
-
-    Meteor.users.update(userId, {
-      $set: {
-        email,
-        name,
-        avatar,
-        connections: [],
-        blocked: [],
-        created: [],
-      }
-    });
-
-    console.log(Meteor.users.findOne(userId));
-  },
-});
+// export const fullRegister = new ValidatedMethod({
+//   name: 'users.fullRegister',
+//   validate: new SimpleSchema({
+//     email: { type: String, regEx: SimpleSchema.RegEx.Email },
+//     password: { type: String },
+//     name: { type: String },
+//     avatar: { type: String, regEx: SimpleSchema.RegEx.Url },
+//   }).validator(),
+//   run({ email, password, name, avatar }) {
+//     console.log('in reg');
+//     const options = {
+//       email,
+//       password,
+//     };
+//
+//     const userId = Accounts.createUser(options);
+//
+//     Meteor.users.update(userId, {
+//       $set: {
+//         email,
+//         name,
+//         avatar,
+//         connections: [],
+//         blocked: [],
+//         created: [],
+//       }
+//     });
+//
+//     console.log(Meteor.users.findOne(userId));
+//   },
+// });
 
 export const joinEvent = new ValidatedMethod({
   name: 'users.joinEvent',

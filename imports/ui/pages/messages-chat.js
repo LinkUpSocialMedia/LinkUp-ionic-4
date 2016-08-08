@@ -10,12 +10,14 @@ import { Session } from 'meteor/session';
 Template.Messages_chat.onCreated(function() {
   this.subscribe('messages.ofUser');
 
-  // this.autorun(() => {
-  //   this.subscribe('users.current');
-  // });
+  this.autorun(() => {
+    this.subscribe('users.current');
+  });
 });
 
 Template.Messages_chat.onRendered(function() {
+  Session.set('newMessage', false);
+
   if (Meteor.isCordova) {
     StatusBar.backgroundColorByHexString('#3b9845');
   }
@@ -25,7 +27,7 @@ Template.Messages_chat.onRendered(function() {
 
 Template.Messages_chat.helpers({
   messageGroups() {
-    const messages = Messages.find().fetch();
+    const messages = Messages.find({}, { sort: { time: -1 } }).fetch();
 
     let grouped = [];
     let messageGroupIds = [];

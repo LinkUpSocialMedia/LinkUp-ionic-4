@@ -44,5 +44,6 @@ Events.publicFields = {
   userAvatar: 1,
   dateOccuring: 1,
   usersGoing: 1,
+  unixTime: 1,
   // category: 1,
 };
