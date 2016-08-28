@@ -122,7 +122,7 @@ Template.Events_add.events({
 
     const eventToAdd = {
       name,
-      description,
+      eventDescription: description,
       address,
       dateOccuring,
     };

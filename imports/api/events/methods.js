@@ -11,13 +11,13 @@ export const insert = new ValidatedMethod({
   name: 'events.insert',
   validate: new SimpleSchema({
     name: { type: String },
-    description: { type: String },
+    eventDescription: { type: String },
     address: { type: String },
     dateOccuring: { type: Date },
     avatar: { type: String, regEx: SimpleSchema.RegEx.Url, optional: true },
     // category: { type: String },
   }).validator(),
-  run({ name, description, address, dateOccuring, avatar }) {
+  run({ name, eventDescription, address, dateOccuring, avatar }) {
     if (!this.userId) {
       throw new Meteor.Error('events.insert.accessDenied',
         'You must be logged in to insert an event!');
@@ -45,7 +45,7 @@ export const insert = new ValidatedMethod({
     // createdBy and userAvatar defaults are for TESTING ONLY
     const event = {
       name,
-      description,
+      eventDescription,
       location,
       address: formalAddress[0].formattedAddress,
       avatar: avatar || '',

@@ -8,7 +8,7 @@ V2
  // this collection schema is taken directly from my code. It specifies the key name, and then the values those keys accept. For instance, userAvatar is a String, and it must be in URL format. It could look like userAvatar: 'http://blahblah.com/' for example. Locations is an object with type and coordinates nested.
 
 name: { type: String },
-description: { type: String },
+eventDescription: { type: String },
 location: { type: Object },
 "location.type": { type: String },
 "location.coordinates": { type: [Number], decimal: true },

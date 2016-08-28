@@ -16,7 +16,7 @@ Events.deny({
 
 Events.schema = new SimpleSchema({
   name: { type: String },
-  description: { type: String },
+  eventDescription: { type: String },
   location: { type: Object },
   "location.type": { type: String },
   "location.coordinates": { type: [Number], decimal: true },
@@ -36,7 +36,7 @@ Events.attachSchema(Events.schema);
 
 Events.publicFields = {
   name: 1,
-  description: 1,
+  eventDescription: 1,
   location: 1,
   address: 1,
   avatar: 1,

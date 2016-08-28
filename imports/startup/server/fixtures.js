@@ -41,7 +41,7 @@ Meteor.startup(() => {
 
       const event = {
         name: faker.name.title(),
-        description: faker.lorem.sentence(),
+        eventDescription: faker.lorem.sentence(),
         location: {
           type: 'Point',
           coordinates: [lng, lat],
