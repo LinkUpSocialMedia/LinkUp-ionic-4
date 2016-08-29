@@ -63,8 +63,29 @@ likes: { type: [String], regEx: SimpleSchema.RegEx.Id },
 // $$$$$$$ Users publications $$$$$$$
 
 'users.inEvent', eventId  // self explanatory
+// fields returned:
+name: { type: String },
+avatar: { type: String, regEx: SimpleSchema.RegEx.Url },
+connections: { type: [String], regEx: SimpleSchema.RegEx.Id },
+events: { type: [String], regEx: SimpleSchema.RegEx.Id },
+created: { type: [String ], regEx: SimpleSchema.RegEx.Id },
+background: { type: String, regEx: SimpleSchema.RegEx.Url },
+
 'users.current'  // the current user document
-'users.connections'
+// fields returned:
+name: { type: String },
+email: { type: String },
+events: { type: [String], regEx: SimpleSchema.RegEx.Id },
+avatar: { type: String, regEx: SimpleSchema.RegEx.Url },
+connections: { type: [String], regEx: SimpleSchema.RegEx.Id },
+blocked: { type: [String], regEx: SimpleSchema.RegEx.Id }, // will always be empty array for now
+created: { type: [String ], regEx: SimpleSchema.RegEx.Id },
+background: { type: String, regEx: SimpleSchema.RegEx.Url },
+
+'users.connections'  // may need to change this one to return more fields
+// fields returned
+name: { type: String },
+avatar: { type: String, regEx: SimpleSchema.RegEx.Url },
 
 // $$$$$$$ Users methods $$$$$$$$
 
